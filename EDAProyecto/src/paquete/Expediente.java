@@ -19,6 +19,7 @@ public class Expediente {
     private int horaInicio;
     private int horaFin;
     
+    
 
     public Expediente(int IdExpediente, String prioridad, Interesado interesado, String asunto) {
         this.IdExpediente = IdExpediente;
