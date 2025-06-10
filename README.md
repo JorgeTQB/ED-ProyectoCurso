@@ -35,6 +35,9 @@ d. Puede proporcionar al interesado el seguimiento de su trámite.
 expedientes no atendidos en orden de prioridad y de antigüedad.
 
 ENTREGABLES O DOCUMENTACIÓN A PRESENTAR
+
 ● Código fuente de la implementación del Software en GitHub u otro repositorio.
+
 ● Informe del desarrollo del proyecto, especificando el rol y aporte de cada integrante del
 equipo.
+
