@@ -8,7 +8,7 @@ package paquete;
  *
  * @author n04120
  */
-public class Expediente {
+public class Tramite {
     
     private int IdExpediente;
     private String prioridad;
@@ -20,7 +20,7 @@ public class Expediente {
     private int horaFin;
     
 
-    public Expediente(int IdExpediente, String prioridad, Interesado interesado, String asunto) {
+    public Tramite(int IdExpediente, String prioridad, Interesado interesado, String asunto) {
         this.IdExpediente = IdExpediente;
         this.prioridad = prioridad;
         this.interesado = interesado;
