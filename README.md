@@ -8,6 +8,7 @@ responsable de registrar los datos del expediente y los datos del interesado cua
 llegue. Además, deberá gestionar el registro de todas las dependencias de la universidad a las que
 se deriven los trámites de los usuarios. Cuando un interesado quiera conocer el estado de su
 trámite, el administrador le proporcionará dicha información.
+
 REQUERIMIENTOS FUNCIONALES DEL SISTEMA A DESARROLLAR
 Requisitos:
 1. Todo expediente para trámite debe registrar la siguiente información:
