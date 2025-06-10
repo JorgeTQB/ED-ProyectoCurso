@@ -4,6 +4,8 @@
  */
 package paquete;
 
+import tda.ListaSimpleEnlazada;
+
 /**
  *
  * @author n04120
@@ -15,6 +17,7 @@ public class Expediente {
     private Interesado interesado;
     private String asunto;
     private String DocumentoReferencia;
+    private ListaSimpleEnlazada<Movimiento> movimientos;
     
     private int horaInicio;
     private int horaFin;
