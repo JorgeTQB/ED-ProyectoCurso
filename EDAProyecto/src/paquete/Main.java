@@ -9,5 +9,11 @@ package paquete;
  * @author n04120
  */
 public class Main {
+
+    public static void main(String[] args){
+
+        Expediente exp = new Expediente();
+
+    }
     
 }
