@@ -1,85 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package paquete;
 
-import tda.ListaSimpleEnlazada;
 
-/**
- *
- * @author n04120
- */
 public class Expediente {
-    
-    private int IdExpediente;
-    private String prioridad;
-    private Interesado interesado;
-    private String asunto;
-    private String DocumentoReferencia;
-    private ListaSimpleEnlazada<Movimiento> movimientos;
-    
-    private int horaInicio;
-    private int horaFin;
-    
-    
+    private int DNI;
+    private String Nombres;
+    private int Telefono;
+    private String email;
 
-    public Expediente(int IdExpediente, String prioridad, Interesado interesado, String asunto) {
-        this.IdExpediente = IdExpediente;
-        this.prioridad = prioridad;
-        this.interesado = interesado;
-        this.asunto = asunto;
+    public Expediente(int DNI, String Nombres, int Telefono, String email) {
+        this.DNI = DNI;
+        this.Nombres = Nombres;
+        this.Telefono = Telefono;
+        this.email = email;
     }
 
-    public int getHoraInicio() {
-        return horaInicio;
+    public int getDNI() {
+        return DNI;
     }
 
-    public void setHoraInicio(int horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
     }
 
-    public int getHoraFin() {
-        return horaFin;
+    public String getNombres() {
+        return Nombres;
     }
 
-    public void setHoraFin(int horaFin) {
-        this.horaFin = horaFin;
+    public void setNombres(String Nombres) {
+        this.Nombres = Nombres;
     }
 
-    public int getIdExpediente() {
-        return IdExpediente;
+    public int getTelefono() {
+        return Telefono;
     }
 
-    public void setIdExpediente(int IdExpediente) {
-        this.IdExpediente = IdExpediente;
+    public void setTelefono(int Telefono) {
+        this.Telefono = Telefono;
     }
 
-    public String getPrioridad() {
-        return prioridad;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPrioridad(String prioridad) {
-        this.prioridad = prioridad;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
-    public Interesado getInteresado() {
-        return interesado;
-    }
-
-    public void setInteresado(Interesado interesado) {
-        this.interesado = interesado;
-    }
-
-    public String getAsunto() {
-        return asunto;
-    }
-
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
-    }
-    
-    
-    
-    
 }
