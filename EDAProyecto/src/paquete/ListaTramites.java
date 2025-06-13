@@ -12,7 +12,7 @@ import TDA.DoublyLinkedList;
  */
 public class ListaTramites {
     
-    private DoublyLinkedList listaTramites;
+    private Cola<Tramite> listaTramites;
 
     public ListaTramites() {
         this.listaTramites = new DoublyLinkedList();

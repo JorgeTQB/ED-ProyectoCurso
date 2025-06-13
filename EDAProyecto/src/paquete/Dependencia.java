@@ -11,6 +11,10 @@ package paquete;
 public class Dependencia {
     private String nombre;
 
+    // 1 Secretaria
+    // 5 Tramites
+    // 1 tramite, el 
+
     public Dependencia(String nombre) {
         this.nombre = nombre;
     }
