@@ -4,7 +4,9 @@
  */
 package paquete;
 
-import tda.ListaSimpleEnlazada;
+import TDA.DoublyLinkedList;
+
+
 
 /**
  *
@@ -13,20 +15,20 @@ import tda.ListaSimpleEnlazada;
 public class Tramite {
     private int IdTramite;
     private String prioridad;
-    private Interesado interesado;
+    private Expediente expediente;
     private String asunto;
     private String DocumentoReferencia;
-    private ListaSimpleEnlazada<Movimiento> movimientos;
+    private DoublyLinkedList<Movimiento> movimientos;
     
     private int horaInicio;
     private int horaFin;
     
     
 
-    public Tramite(int IdTramite, String prioridad, Interesado interesado, String asunto) {
+    public Tramite(int IdTramite, String prioridad, Expediente expediente, String asunto) {
         this.IdTramite = IdTramite;
         this.prioridad = prioridad;
-        this.interesado = interesado;
+        this.expediente = expediente;
         this.asunto = asunto;
     }
 
@@ -62,12 +64,12 @@ public class Tramite {
         this.prioridad = prioridad;
     }
 
-    public Interesado getInteresado() {
-        return interesado;
+    public Expediente getExpediente() {
+        return expediente;
     }
 
-    public void setInteresado(Interesado interesado) {
-        this.interesado = interesado;
+    public void setExpediente(Expediente expediente) {
+        this.expediente = expediente;
     }
 
     public String getAsunto() {
