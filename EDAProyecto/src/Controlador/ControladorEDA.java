@@ -4,14 +4,20 @@
  */
 package Controlador;
 
+import paquete.ListaTramites;
+
 /**
  *
  * @author HOGAR
  */
 public class ControladorEDA {
 
+    private ListaTramites listaTramites;
+    
     public ControladorEDA() {
+        listaTramites = new ListaTramites();
     }
+    
     
     
     

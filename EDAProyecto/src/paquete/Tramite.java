@@ -5,6 +5,7 @@
 package paquete;
 
 import TDA.DoublyLinkedList;
+import java.util.Date;
 
 
 
@@ -14,39 +15,25 @@ import TDA.DoublyLinkedList;
  */
 public class Tramite {
     private int IdTramite;
-    private String prioridad;
+    private int prioridad;
     private Expediente expediente;
     private String asunto;
     private String DocumentoReferencia;
-    private DoublyLinkedList<Movimiento> movimientos;
+    private Cola<Movimiento> movimientos;
     
-    private int horaInicio;
-    private int horaFin;
+    private Date horaInicio;
+    private Date horaFin;
     
     
 
-    public Tramite(int IdTramite, String prioridad, Expediente expediente, String asunto) {
+    public Tramite(int IdTramite, int prioridad, Expediente expediente, String asunto) {
         this.IdTramite = IdTramite;
         this.prioridad = prioridad;
         this.expediente = expediente;
         this.asunto = asunto;
+        this.horaInicio = new Date();
     }
 
-    public int getHoraInicio() {
-        return horaInicio;
-    }
-
-    public void setHoraInicio(int horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public int getHoraFin() {
-        return horaFin;
-    }
-
-    public void setHoraFin(int horaFin) {
-        this.horaFin = horaFin;
-    }
 
     public int getIdTramite() {
         return IdTramite;
@@ -56,11 +43,11 @@ public class Tramite {
         this.IdTramite = IdTramite;
     }
 
-    public String getPrioridad() {
+    public int getPrioridad() {
         return prioridad;
     }
 
-    public void setPrioridad(String prioridad) {
+    public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
 
@@ -78,6 +65,10 @@ public class Tramite {
 
     public void setAsunto(String asunto) {
         this.asunto = asunto;
+    }
+    
+    public void finalizarTramite(){
+        this.horaFin = new Date();
     }
     
 }
