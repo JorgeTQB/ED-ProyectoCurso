@@ -20,7 +20,7 @@ public class Tramite {
     private Expediente expediente;
     private String asunto;
     private String DocumentoReferencia;
-    private Cola<Movimiento> movimientos;
+    private DoublyLinkedList<Movimiento> movimientos;
 
     private boolean finalizado = false;
     
