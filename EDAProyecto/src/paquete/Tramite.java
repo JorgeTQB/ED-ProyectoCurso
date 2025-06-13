@@ -5,7 +5,8 @@
 package paquete;
 
 import TDA.DoublyLinkedList;
-import java.util.Date;
+
+import java.util.Calendar;
 
 
 
@@ -20,9 +21,11 @@ public class Tramite {
     private String asunto;
     private String DocumentoReferencia;
     private Cola<Movimiento> movimientos;
+
+    private boolean finalizado = false;
     
-    private Date horaInicio;
-    private Date horaFin;
+    private Calendar horaInicio;
+    private Calendar horaFin;
     
     
 
@@ -31,7 +34,7 @@ public class Tramite {
         this.prioridad = prioridad;
         this.expediente = expediente;
         this.asunto = asunto;
-        this.horaInicio = new Date();
+        this.horaInicio = Calendar.getInstance();
     }
 
 
@@ -68,7 +71,16 @@ public class Tramite {
     }
     
     public void finalizarTramite(){
-        this.horaFin = new Date();
+        this.horaFin = Calendar.getInstance();
+        finalizado = true;
+    }
+
+    public Calendar getHoraInicio() {
+        return horaInicio;
+    }
+
+    public Calendar getHoraFin() {
+        return horaFin;
     }
     
 }
