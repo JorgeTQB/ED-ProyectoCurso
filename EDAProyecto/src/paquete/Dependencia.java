@@ -4,6 +4,8 @@
  */
 package paquete;
 
+import TDA.*;
+
 /**
  *
  * @author EDUARDO
