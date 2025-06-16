@@ -1,3 +1,7 @@
+package paquete;
+
+import TDA.*;
+
 
 
 public class ListaColasDependencias{
