@@ -29,7 +29,7 @@ public class Cola<T> {
         return null;
     }
     
-   /*
+  /* 
  public void eliminarTr(T item){
         boolean eliminado = false;
         Cola<T> aux = new Cola();
@@ -54,37 +54,7 @@ public class Cola<T> {
         }
         }
    */
-    public void eliminarT(T item) {
-    if (esVacia()) {
-        System.out.println("La cola está vacía!");
-        return;
-    }
-    Node<T> actual = frente;
-
-    while (actual != null) {
-        if (actual.item().equals(item)) {
-            if (actual == frente && actual == ultimo) {
-                frente = ultimo = null;
-            } else if (actual == frente) {
-                frente = actual.next();
-                if (frente != null) frente.setPrev(null);
-            } else if (actual == ultimo) {
-                ultimo = actual.prev();
-                if (ultimo != null) ultimo.setNext(null);
-            } else {
-                actual.prev().setNext(actual.next());
-                actual.next().setPrev(actual.prev());
-            }
-
-            return; // Lo eliminaste y ya no hay más
-        }
-
-        actual = actual.next();
-    }
-
-    System.out.println("Elemento no encontrado en la cola.");
-}
-    
+   
     
     
     public boolean esVacia(){return frente==null;}
