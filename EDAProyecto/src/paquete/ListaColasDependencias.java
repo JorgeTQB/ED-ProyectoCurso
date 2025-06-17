@@ -1,6 +1,6 @@
 package paquete;
 
-import TDA.*;
+import tda.*;
 
 
 

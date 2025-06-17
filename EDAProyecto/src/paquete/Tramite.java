@@ -4,7 +4,7 @@
  */
 package paquete;
 
-import TDA.DoublyLinkedList;
+import tda.*;
 
 import java.util.Calendar;
 
