@@ -1,5 +1,6 @@
 
-package TDA;
+package tda;
+import paquete.*;
 
 
 public class Cola<T> {
@@ -13,6 +14,77 @@ public class Cola<T> {
         this.frente = frente;
         this.ultimo = ultimo;
     }
+    
+    public T obtenerItem(int Id){   
+        Node ptr = frente;    
+        while(ptr != null){
+            if(ptr.item() instanceof Tramite tramite){
+                int tramiteid = tramite.getIdTramite();
+                if(Id == tramiteid){
+                    return (T) tramite;
+                }
+            }
+            ptr = ptr.next();
+        }
+        return null;
+    }
+    
+   /*
+ public void eliminarTr(T item){
+        boolean eliminado = false;
+        Cola<T> aux = new Cola();
+        if(esVacia()){
+            System.out.println("La cola esta vacía!"); 
+        } else{
+        while(!esVacia()){
+        T x = desencolarFinal();
+        
+        if(x.equals(item) && !eliminado){
+            eliminado = true;
+        } else{
+        aux.encolarFinal(x);
+        }}}
+        
+        while(!aux.esVacia()){
+        encolarFinal(aux.desencolarFinal());
+        }
+        
+        if(eliminado ==true){
+            System.out.println("Se eliminó con éxito!");
+        }
+        }
+   */
+    public void eliminarT(T item) {
+    if (esVacia()) {
+        System.out.println("La cola está vacía!");
+        return;
+    }
+    Node<T> actual = frente;
+
+    while (actual != null) {
+        if (actual.item().equals(item)) {
+            if (actual == frente && actual == ultimo) {
+                frente = ultimo = null;
+            } else if (actual == frente) {
+                frente = actual.next();
+                if (frente != null) frente.setPrev(null);
+            } else if (actual == ultimo) {
+                ultimo = actual.prev();
+                if (ultimo != null) ultimo.setNext(null);
+            } else {
+                actual.prev().setNext(actual.next());
+                actual.next().setPrev(actual.prev());
+            }
+
+            return; // Lo eliminaste y ya no hay más
+        }
+
+        actual = actual.next();
+    }
+
+    System.out.println("Elemento no encontrado en la cola.");
+}
+    
     
     
     public boolean esVacia(){return frente==null;}
@@ -57,11 +129,14 @@ public class Cola<T> {
     }
      else{
         T itemAux = frente.item();
-    
         frente= frente.next();
-        return itemAux;
-}
-    }
+        if (frente != null) {
+            frente.setPrev(null);
+        } else {
+            // La cola quedó vacía
+            ultimo = null;
+        }
+        return itemAux;}}
     
     public T desencolarFinal(){
     if(esVacia()){ return null;
@@ -69,10 +144,20 @@ public class Cola<T> {
     }
      else{
         T itemAux = ultimo.item();
-        ultimo= ultimo.prev();
-        ultimo.setNext(null);
+        if (frente == ultimo) {
+            frente = null;
+            ultimo = null;
+        } else {
+            ultimo = ultimo.prev();
+            if (ultimo != null) {
+                ultimo.setNext(null);
+            }
+        }
+
         return itemAux;
-}
+    }
+
+    
     }
     
     public void imprimirCola(){
