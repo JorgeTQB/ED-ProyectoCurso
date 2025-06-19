@@ -26,65 +26,68 @@ public class ListaTramites {
         switch(tramite.getPrioridad()){
             case 1:
                 if(listaTramites.esVacia()){
-                listaTramites.encolarFinal(tramite);
-                break;
+                    listaTramites.encolar(tramite);
+                    break;
                 } else{
-                 while(!listaTramites.esVacia()){
-                 Tramite x = listaTramites.desencolarFrente();
-                 
-                 if(!agregado && x.getPrioridad() > 1){
-                 aux.encolarFrente(x);
-                 agregado = true;
-                 }
-                 aux.encolarFrente(x);
-                 }}
+                    while(!listaTramites.esVacia()){
+                        Tramite x = listaTramites.desencolar();
+
+                        if(!agregado && x.getPrioridad() > 1){
+                            aux.encolarFrente(x);
+                            agregado = true;
+                        }
+                        aux.encolarFrente(x);
+                    }
+                }
                 
                 if(!agregado){
-                aux.encolarFrente(tramite);
+                    aux.encolarFrente(tramite);
                 }
                 
                 while (!aux.esVacia()) {
-                    listaTramites.encolarFrente(aux.desencolarFrente());
+                    listaTramites.encolarFrente(aux.desencolar());
                 }
-                break;
                 
+                break;
                 
             case 2:
                 if(listaTramites.esVacia()){
-                listaTramites.encolarFinal(tramite);
-                break;
+                    listaTramites.encolar(tramite);
+                    break;
                 } else{
-                 while(!listaTramites.esVacia()){
-                 Tramite x = listaTramites.desencolarFrente();
-                 
-                 if(!agregado && x.getPrioridad() > 2){
-                 aux.encolarFrente(x);
-                 agregado = true;
-                 }
-                 aux.encolarFrente(x);
-                 }}
+                    while(!listaTramites.esVacia()){
+                        Tramite x = listaTramites.desencolar();
+
+                        if(!agregado && x.getPrioridad() > 2){
+                            aux.encolarFrente(x);
+                            agregado = true;
+                        }
+                        
+                        aux.encolarFrente(x);
+                    }
+                }
                 
                 if(!agregado){
-                aux.encolarFrente(tramite);
+                    aux.encolarFrente(tramite);
                 }
                 
                 while (!aux.esVacia()) {
-                    listaTramites.encolarFrente(aux.desencolarFrente());
+                    listaTramites.encolarFrente(aux.desencolar());
                 }
                 
                 break;
+                
             case 3:
-                listaTramites.encolarFinal(tramite);
+                listaTramites.encolar(tramite);
                 break;
         
         }
     
     }
     
-    public void eliminar(Tramite tramite){
-        listaTramites.eliminar(tramite);
+    public void eliminar(){
+        listaTramites.desencolar();
         
-
     }
     
     public Tramite get(int ID){
