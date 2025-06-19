@@ -57,56 +57,64 @@ public class Cola<T> {
    
   
     
-    public boolean esVacia(){return frente==null;}
+    public boolean esVacia(){
+        return frente == null;
+    }
+    
     /* 
     encolar: Sirve para agregar un elemento en la cola y la unica forma de agregar el elemento es al final.
     */
     public void encolarFrente(T item){
-    Node<T> nuevoNodo = new Node(item);
-    if (esVacia()){
-        /*
-        Si la cola está vacía, entonces ambos apuntan al Nodo Item
-        */
-    ultimo = nuevoNodo; 
-    frente = nuevoNodo;
-    }
-     else{
-    nuevoNodo.setNext(frente);
-    frente = nuevoNodo.prev();
-    frente = nuevoNodo;
-        } 
-}
-    
-    public void encolarFinal(T item){
-    Node<T> nuevoNodo = new Node(item);
-    if (esVacia()){
-    /*
-        Si la cola está vacía, entonces ambos apuntan al Nodo Item
-        */
-    ultimo = nuevoNodo; 
-    frente = nuevoNodo;
-    } else{
-    nuevoNodo.setPrev(ultimo);
-    ultimo.setNext(nuevoNodo);
-    ultimo = nuevoNodo;
-    }
-    }
-    
-    
-    public T desencolarFrente(){
-    if(esVacia()){ return null;
-        //throw new RuntimeException("La cola está vacía");
-    }
-     else{
-        T itemAux = frente.item();
-        frente= frente.next();
-        if (frente != null) {
-            frente.setPrev(null);
-        } else {
-            // La cola quedó vacía
-            ultimo = null;
+        Node<T> nuevoNodo = new Node(item);
+        if (esVacia()){
+            /*
+            Si la cola está vacía, entonces ambos apuntan al Nodo Item
+            */
+            ultimo = nuevoNodo; 
+            frente = nuevoNodo;
         }
-        return itemAux;}}
+        else{
+            nuevoNodo.setNext(frente);
+            frente = nuevoNodo.prev();
+            frente = nuevoNodo;
+        } 
+    }
+    
+    public void encolar(T item){
+        
+        Node<T> nuevoNodo = new Node(item);
+        if (esVacia()){
+            /*
+            Si la cola está vacía, entonces ambos apuntan al Nodo Item
+            */
+            ultimo = nuevoNodo; 
+            frente = nuevoNodo;
+        }else{
+            nuevoNodo.setPrev(ultimo);
+            ultimo.setNext(nuevoNodo);
+            ultimo = nuevoNodo;
+        }
+    }
+    
+    
+    public T desencolar(){
+        if(esVacia()){
+            return null;
+            //throw new RuntimeException("La cola está vacía");
+        }
+        else{
+            T itemAux = frente.item();
+            frente= frente.next();
+
+            if (frente != null) {
+                frente.setPrev(null);
+            } else {
+                // La cola quedó vacía
+                ultimo = null;
+            }
+            return itemAux;
+        }
+    }
     
     public T desencolarFinal(){
     if(esVacia()){ return null;
@@ -131,11 +139,11 @@ public class Cola<T> {
     }
     
     public void imprimirCola(){
-    Node<T> aux = frente;
-    while(aux !=null){
-        System.out.print( aux.item().toString() + " ~ ");
-        aux = aux.next();
-    }
+        Node<T> aux = frente;
+        while(aux !=null){
+            System.out.print( aux.item().toString() + " ~ ");
+            aux = aux.next();
+        }
     }
     
 }

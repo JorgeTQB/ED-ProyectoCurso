@@ -32,11 +32,11 @@ public class probandoCola {
         
             case 1:
                 if(listaTramites.esVacia()){
-                listaTramites.encolarFinal(tramite);
+                listaTramites.encolar(tramite);
                 break;
                 } else{
                  while(!listaTramites.esVacia()){
-                 Tramite x = (Tramite) listaTramites.desencolarFrente();
+                 Tramite x = (Tramite) listaTramites.desencolar();
                  
                  if(!agregado && x.getPrioridad() > 1){
                  aux.encolarFrente(tramite);
@@ -53,18 +53,18 @@ public class probandoCola {
                 }
                 
                 while (!aux.esVacia()) {
-                    listaTramites.encolarFrente(aux.desencolarFrente());
+                    listaTramites.encolarFrente(aux.desencolar());
                 }
                 break;
                 
                 
             case 2:
                 if(listaTramites.esVacia()){
-                listaTramites.encolarFinal(tramite);
+                listaTramites.encolar(tramite);
                 break;
                 } else{
                  while(!listaTramites.esVacia()){
-                 Tramite x = (Tramite) listaTramites.desencolarFrente();
+                 Tramite x = (Tramite) listaTramites.desencolar();
                  
                  if(!agregado && x.getPrioridad() > 2){
                  aux.encolarFrente(tramite);
@@ -78,12 +78,12 @@ public class probandoCola {
                 }
                 
                 while (!aux.esVacia()) {
-                    listaTramites.encolarFrente(aux.desencolarFrente());
+                    listaTramites.encolarFrente(aux.desencolar());
                 }
                 
                 break;
             case 3:
-                listaTramites.encolarFinal(tramite);
+                listaTramites.encolar(tramite);
                 break;
         
         }
@@ -95,19 +95,19 @@ public static void imprimirCola(Cola<Tramite> listaTramites) {
 
     System.out.print("[");
     while (!listaTramites.esVacia()) {
-        Tramite t = listaTramites.desencolarFrente();
+        Tramite t = listaTramites.desencolar();
         System.out.print("(" + t.getAsunto() + "," + t.getPrioridad() + ")");
 
         if (!listaTramites.esVacia()) {
             System.out.print(", ");
         }
 
-        aux.encolarFinal(t); 
+        aux.encolar(t); 
     }
     System.out.println("]");
 
     while (!aux.esVacia()) {
-        listaTramites.encolarFinal(aux.desencolarFrente());
+        listaTramites.encolar(aux.desencolar());
     }
 }
 
