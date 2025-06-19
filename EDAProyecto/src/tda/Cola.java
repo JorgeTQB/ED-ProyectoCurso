@@ -15,7 +15,7 @@ public class Cola<T> {
         this.ultimo = ultimo;
     }
     
-    public T obtenerItem(int Id){   
+    public T obtenerItemTramite(int Id){   
         Node ptr = frente;    
         while(ptr != null){
             if(ptr.item() instanceof Tramite tramite){
@@ -55,7 +55,7 @@ public class Cola<T> {
         }
    */
    
-    
+  
     
     public boolean esVacia(){return frente==null;}
     /* 
