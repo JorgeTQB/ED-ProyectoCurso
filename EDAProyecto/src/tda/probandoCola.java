@@ -16,7 +16,6 @@ public class probandoCola {
         
         agregar(tramite1,listaTramites);
         agregar(tramite2,listaTramites);
-        agregar(tramite2,listaTramites);
     
         agregar(tramite3,listaTramites);
         agregar(tramite4,listaTramites);
