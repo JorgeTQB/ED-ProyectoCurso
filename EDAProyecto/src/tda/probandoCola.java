@@ -13,7 +13,7 @@ public class probandoCola {
         Cola.encolarFinal(3);
         Cola.encolarFinal(4);
 
-        Cola.eliminarTr(1);
+        
         System.out.println("");
         Cola.imprimirCola();
     }
