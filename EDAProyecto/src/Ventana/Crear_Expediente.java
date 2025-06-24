@@ -11,19 +11,19 @@ import Controlador.ControladorEDA;
 import paquete.Tramite;
 public class Crear_Expediente extends javax.swing.JFrame {
 
+    private Menu v1;
     private ControladorEDA control;
     
     /**
      * Creates new form Expediente
      */
-    public Crear_Expediente(ControladorEDA control) {
-        initComponents();
-        this.control = control;
-    }
-    
     public Crear_Expediente() {
         initComponents();
     }
+    public void setControlador(ControladorEDA control){
+        this.control = control;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,11 +156,15 @@ public class Crear_Expediente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public void setMenu(Menu v1){
+        this.v1 = v1;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Menu ventana2 = new Menu();
         this.setVisible(false);
-        ventana2.setVisible(true);
+        v1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
