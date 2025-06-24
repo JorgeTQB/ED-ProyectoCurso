@@ -4,17 +4,24 @@
  */
 package Ventana;
 
+import Controlador.ControladorEDA;
+
 /**
  *
  * @author EDUARDO
  */
 public class Menu extends javax.swing.JFrame {
 
+    private ControladorEDA control;
+    
     /**
      * Creates new form Menu
+     * 
+     * 
      */
     public Menu() {
         initComponents();
+        this.control = new ControladorEDA();
     }
 
     /**
@@ -66,7 +73,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Expediente ventana3 = new Expediente();
+        Crear_Expediente ventana3 = new Crear_Expediente(control);
         this.setVisible(false);
         ventana3.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
