@@ -87,8 +87,7 @@ public class probandoCola {
                 break;
         
         }
-    
->>>>>>> master
+   
     }
     
 public static void imprimirCola(Cola<Tramite> listaTramites) {
