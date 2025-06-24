@@ -36,6 +36,7 @@ public class Tramite {
         this.asunto = asunto;
         this.horaInicio = Calendar.getInstance();
     }
+   
 
 
     public int getIdTramite() {

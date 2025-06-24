@@ -5,6 +5,7 @@
 package Controlador;
 
 import paquete.ListaTramites;
+import paquete.Tramite;
 
 /**
  *
@@ -19,8 +20,10 @@ public class ControladorEDA {
     }
     
     
-    
-    
+    public void agregar(Tramite tram){
+        listaTramites.agregar(tram);
+        
+    }
     
     
 }
