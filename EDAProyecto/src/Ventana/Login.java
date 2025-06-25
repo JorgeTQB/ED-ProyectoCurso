@@ -4,6 +4,8 @@
  */
 package Ventana;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EDUARDO
@@ -91,8 +93,9 @@ public class Login extends javax.swing.JFrame {
             this.setVisible(false);
             ventana2.setVisible(true);
         }else{
-            jLabel2.setText("Contraseña o usuario invalido");
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalido");
             jPasswordField1.setText(null);
+            jTextField1.setText(null);
         }
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
