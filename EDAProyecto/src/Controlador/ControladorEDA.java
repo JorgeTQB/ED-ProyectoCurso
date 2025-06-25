@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import paquete.ListaColasDependencias;
 import paquete.ListaTramites;
 import paquete.Tramite;
 
@@ -14,16 +15,22 @@ import paquete.Tramite;
 public class ControladorEDA {
 
     private ListaTramites listaTramites;
+    private ListaColasDependencias colaDependencia;
     
     public ControladorEDA() {
         listaTramites = new ListaTramites();
+        colaDependencia = new ListaColasDependencias();
     }
     
     
-    public void agregar(Tramite tram){
+    public void agregarLT(Tramite tram){
         listaTramites.agregar(tram);
         
     }
+
+
+    
+    
     
     
 }
