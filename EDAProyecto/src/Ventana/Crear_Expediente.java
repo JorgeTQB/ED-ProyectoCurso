@@ -8,6 +8,7 @@ package Ventana;
  * @author EDUARDO
  */
 import Controlador.ControladorEDA;
+import paquete.Expediente;
 import paquete.Tramite;
 public class Crear_Expediente extends javax.swing.JFrame {
 
@@ -176,8 +177,9 @@ public class Crear_Expediente extends javax.swing.JFrame {
         String asunto = this.jTextField5.getText();
         String docref = this.jTextField6.getText();
         
-        Tramite tramit = new Tramite(1, 1, new paquete.Expediente(dni, nombres, telefono, email), asunto);
-                       
+        Tramite tramit = new Tramite(1, 1, new Expediente(dni, nombres, telefono, email), asunto);
+        control.agregarLT(tramit);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -137,7 +137,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     private boolean VerificarContraseña(){
-        String password = "12345";
+        String password = "123";
         String ingresada = jPasswordField1.getText();
         
         if(ingresada.equals(password)){
