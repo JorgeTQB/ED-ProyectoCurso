@@ -21,6 +21,15 @@ public class DoublyLinkedList<T> {
         this.tail = null;
     }
 
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public Node<T> getTail() {
+        return tail;
+    }
+
+    
     public boolean isEmpty() {
         return head == null;
     }

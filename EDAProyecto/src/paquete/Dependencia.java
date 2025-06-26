@@ -88,5 +88,10 @@ public class Dependencia {
     public Cola<Tramite> getColaDependencia() {
         return colaDependencia;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
     
 }
