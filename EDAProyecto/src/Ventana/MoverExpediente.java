@@ -7,8 +7,6 @@ package Ventana;
 import Controlador.ControladorEDA;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import paquete.Dependencia;
-import paquete.ListaColasDependencias;
 
 /**
  *
@@ -17,7 +15,6 @@ import paquete.ListaColasDependencias;
 public class MoverExpediente extends javax.swing.JFrame {
     private Menu v1;
     private ControladorEDA control;
-    private ListaColasDependencias listadepen;
     DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form MoverExpediente
@@ -27,17 +24,15 @@ public class MoverExpediente extends javax.swing.JFrame {
         this.control = control;
     }
     
-    public void setListaDepen(ListaColasDependencias listadepen){
-        this.listadepen = listadepen;
-    }
-    
     public MoverExpediente() {
         initComponents();
         MostrarTabla();
     }
     
     void MostrarTabla(){
-        modelo.addColumn("pepe");
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombres");
+        modelo.addColumn("Asunto");
         this.jTable1.setModel(modelo);
         
         combo.addItem("-Selecciona-");
@@ -76,6 +71,8 @@ public class MoverExpediente extends javax.swing.JFrame {
         combo = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +109,11 @@ public class MoverExpediente extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("LISTA DE TRAMITES");
+
+        jLabel2.setText("Selecciona una dependencia para mostrar su cola de tramites");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,27 +122,39 @@ public class MoverExpediente extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(88, 88, 88))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(565, Short.MAX_VALUE)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jToggleButton2)
-                .addGap(23, 23, 23))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(35, 35, 35)
                 .addComponent(jToggleButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jToggleButton2)
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -152,12 +166,15 @@ public class MoverExpediente extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        String [] Datos = new String[1];
+        String [] Datos = new String[3];
         
         if(combo.getSelectedItem().toString().equals("-Selecciona-")){
             JOptionPane.showMessageDialog(null, "Debes de eligir una dependencia");
         }else if(combo.getSelectedItem().toString().equals("Inicio")){
-            Datos[0] = control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getAsunto();
+            Datos[0] = String.valueOf(control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getIdTramite());
+            Datos[1] = control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getExpediente().getNombres();
+            Datos[2] = control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getAsunto();
+            
             modelo.addRow(Datos);
             
         }
@@ -206,6 +223,8 @@ public class MoverExpediente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> combo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;

@@ -117,26 +117,32 @@ public class Cola<T> {
     }
     
     public T desencolarFinal(){
-    if(esVacia()){ return null;
-        //throw new RuntimeException("La cola está vacía");
-    }
-     else{
-        T itemAux = ultimo.item();
-        if (frente == ultimo) {
-            frente = null;
-            ultimo = null;
-        } else {
-            ultimo = ultimo.prev();
-            if (ultimo != null) {
-                ultimo.setNext(null);
-            }
+        if(esVacia()){
+            return null;
+            //throw new RuntimeException("La cola está vacía");
         }
+        else{
+            T itemAux = ultimo.item();
+            if (frente == ultimo) {
+                frente = null;
+                ultimo = null;
+            } else {
+                ultimo = ultimo.prev();
+                if (ultimo != null) {
+                    ultimo.setNext(null);
+                }
+            }
 
-        return itemAux;
-    }
+            return itemAux;
+        }
 
     
     }
+    
+    public void largoCola(){
+        
+    }
+    
     
     public void imprimirCola(){
         Node<T> aux = frente;
