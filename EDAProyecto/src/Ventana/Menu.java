@@ -59,6 +59,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton3.setText("Lista Tramites");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,6 +109,15 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
         ventana4.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ListadeTramites ventana5 = new ListadeTramites();
+        ventana5.setMenu(this);
+        ventana5.setControlador(control);
+        this.setVisible(false);
+        ventana5.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

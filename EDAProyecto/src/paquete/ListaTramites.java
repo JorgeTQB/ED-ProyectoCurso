@@ -94,6 +94,14 @@ public class ListaTramites {
         Tramite tram = (Tramite) listaTramites.obtenerItemTramite(ID);
         return tram;
     }
+
+    public Cola<Tramite> getListaTramites() {
+        return listaTramites;
+    }
+
+    public Node<Tramite> getFrente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     
