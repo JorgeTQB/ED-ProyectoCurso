@@ -11,6 +11,9 @@ import Controlador.ControladorEDA;
 import javax.swing.JOptionPane;
 import paquete.Expediente;
 import paquete.Tramite;
+import paquete.Dependencia;
+import paquete.ListaColasDependencias;
+
 public class Crear_Expediente extends javax.swing.JFrame {
 
     private Menu v1;
@@ -25,6 +28,7 @@ public class Crear_Expediente extends javax.swing.JFrame {
     public void setControlador(ControladorEDA control){
         this.control = control;
     }
+   
     
 
     /**
@@ -159,7 +163,7 @@ public class Crear_Expediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public void setMenu(Menu v1){
+     public void setMenu(Menu v1){
         this.v1 = v1;
     }
     
@@ -177,11 +181,18 @@ public class Crear_Expediente extends javax.swing.JFrame {
         String email = this.jTextField4.getText();
         String asunto = this.jTextField5.getText();
         String docref = this.jTextField6.getText();
-        
-        
-        
+   
         Tramite tramit = new Tramite(1, 1, new Expediente(dni, nombres, telefono, email), asunto);
         control.agregarLT(tramit);
+        control.agregarDP(tramit);
+        
+        JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        jTextField5.setText(null);
+        jTextField6.setText(null);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
