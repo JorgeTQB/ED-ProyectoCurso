@@ -4,6 +4,13 @@ import paquete.*;
 public class probandoCola {
     public static void main(String[] args) {
         
+        Cola<Integer> cola1 = new Cola();
+        cola1.encolar(2);
+        cola1.encolar(2);
+        
+        System.out.println(cola1.length());
+        
+        /*
         Cola<Tramite> listaTramites = new Cola();
         Expediente expediente = new Expediente(123,"Pepe",123,"pepe@gmail.com");
         Expediente expediente2 = new Expediente(123,"Pepe",123,"pepe@gmail.com");
@@ -20,8 +27,9 @@ public class probandoCola {
         agregar(tramite3,listaTramites);
         agregar(tramite4,listaTramites);
 
+        */
         
-        imprimirCola(listaTramites);
+        
        
     }
 

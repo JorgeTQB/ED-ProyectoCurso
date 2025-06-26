@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import paquete.Expediente;
 import paquete.ListaColasDependencias;
 import paquete.ListaTramites;
 import paquete.Tramite;
@@ -16,19 +17,24 @@ public class ControladorEDA {
 
     private ListaTramites listaTramites;
     private ListaColasDependencias colaDependencia;
+    private int contadorId;
     
     public ControladorEDA() {
         listaTramites = new ListaTramites();
         colaDependencia = new ListaColasDependencias();
+        contadorId = 0;
     }
     
     
-    public void agregarLT(Tramite tram){
-        listaTramites.agregar(tram);
+    public void agregarLT(int dni, String nombres, int telefono, String email, String asunto, String docrefe){
+        Tramite tramit = new Tramite(contadorId, 1, new Expediente(dni, nombres, telefono, email), asunto, docrefe);
+        contadorId++;
+        listaTramites.agregar(tramit);
         
     }
-    public void agregarDP(Tramite tram){
-        colaDependencia.getInicio().encolarDependencia(tram);
+    public void agregarDP(int dni, String nombres, int telefono, String email, String asunto, String docrefe){
+        Tramite tramit = new Tramite(contadorId, 1, new Expediente(dni, nombres, telefono, email), asunto, docrefe);
+        colaDependencia.getInicio().encolarDependencia(tramit);
     }
 
     public ListaTramites getListaTramites() {

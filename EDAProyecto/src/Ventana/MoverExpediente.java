@@ -7,6 +7,9 @@ package Ventana;
 import Controlador.ControladorEDA;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import paquete.Tramite;
+import tda.Cola;
+import tda.Node;
 
 /**
  *
@@ -171,11 +174,22 @@ public class MoverExpediente extends javax.swing.JFrame {
         if(combo.getSelectedItem().toString().equals("-Selecciona-")){
             JOptionPane.showMessageDialog(null, "Debes de eligir una dependencia");
         }else if(combo.getSelectedItem().toString().equals("Inicio")){
-            Datos[0] = String.valueOf(control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getIdTramite());
-            Datos[1] = control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getExpediente().getNombres();
-            Datos[2] = control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getAsunto();
             
-            modelo.addRow(Datos);
+            Cola aux = control.getColaDependencia().getInicio().getColaDependencia();
+            
+            Node<Tramite> auxi = aux.getFrente();
+            
+            while(auxi != null){
+                Datos[0] = String.valueOf(auxi.item().getIdTramite());
+                Datos[1] = auxi.item().getExpediente().getNombres();
+                Datos[2] = auxi.item().getAsunto();
+                
+                modelo.addRow(Datos);
+                
+                auxi = auxi.next();
+            }
+           
+                
             
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
