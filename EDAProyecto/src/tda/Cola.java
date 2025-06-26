@@ -139,7 +139,16 @@ public class Cola<T> {
     
     }
     
-    public void largoCola(){
+    public int length(){
+        
+        int largo = 0;
+        Node<T> aux = frente;
+        while(aux !=null){
+            largo++;
+            aux = aux.next();
+        }
+        
+        return largo;
         
     }
     
@@ -151,5 +160,23 @@ public class Cola<T> {
             aux = aux.next();
         }
     }
+
+    public Node<T> getFrente() {
+        return frente;
+    }
+
+    public void setFrente(Node<T> frente) {
+        this.frente = frente;
+    }
+
+    public Node<T> getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(Node<T> ultimo) {
+        this.ultimo = ultimo;
+    }
+    
+    
     
 }

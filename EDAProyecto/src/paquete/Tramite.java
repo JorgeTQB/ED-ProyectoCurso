@@ -29,11 +29,12 @@ public class Tramite {
     
     
 
-    public Tramite(int IdTramite, int prioridad, Expediente expediente, String asunto) {
+    public Tramite(int IdTramite, int prioridad, Expediente expediente, String asunto, String documentoReferencia) {
         this.IdTramite = IdTramite;
         this.prioridad = prioridad;
         this.expediente = expediente;
         this.asunto = asunto;
+        this.DocumentoReferencia = documentoReferencia;
         this.horaInicio = Calendar.getInstance();
     }
    

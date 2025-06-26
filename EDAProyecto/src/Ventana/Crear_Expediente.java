@@ -182,9 +182,9 @@ public class Crear_Expediente extends javax.swing.JFrame {
         String asunto = this.jTextField5.getText();
         String docref = this.jTextField6.getText();
    
-        Tramite tramit = new Tramite(1, 1, new Expediente(dni, nombres, telefono, email), asunto);
-        control.agregarLT(tramit);
-        control.agregarDP(tramit);
+        
+        control.agregarLT(dni, nombres, telefono, email, asunto, docref);
+        control.agregarDP(dni, nombres, telefono, email, asunto, docref);
         
         JOptionPane.showMessageDialog(null, "Se agregó correctamente");
         jTextField1.setText(null);
