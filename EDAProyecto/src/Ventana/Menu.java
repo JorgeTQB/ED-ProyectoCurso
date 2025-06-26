@@ -5,6 +5,8 @@
 package Ventana;
 
 import Controlador.ControladorEDA;
+import paquete.Dependencia;
+import paquete.ListaColasDependencias;
 
 /**
  *
@@ -13,7 +15,7 @@ import Controlador.ControladorEDA;
 public class Menu extends javax.swing.JFrame {
 
     private ControladorEDA control;
-    
+   
     
     
     /**
@@ -24,6 +26,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.control = new ControladorEDA();
+        
     }
 
     /**
@@ -88,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         Crear_Expediente ventana3 = new Crear_Expediente();
         ventana3.setMenu(this);
-        ventana3.setControlador(control);
+        ventana3.setControlador(control);   
         this.setVisible(false);
         ventana3.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

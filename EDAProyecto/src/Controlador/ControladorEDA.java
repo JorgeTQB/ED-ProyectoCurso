@@ -27,7 +27,19 @@ public class ControladorEDA {
         listaTramites.agregar(tram);
         
     }
+    public void agregarDP(Tramite tram){
+        colaDependencia.getInicio().encolarDependencia(tram);
+    }
 
+    public ListaTramites getListaTramites() {
+        return listaTramites;
+    }
+
+    public ListaColasDependencias getColaDependencia() {
+        return colaDependencia;
+    }
+
+    
 
     
     

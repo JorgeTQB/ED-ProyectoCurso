@@ -7,6 +7,8 @@ package Ventana;
 import Controlador.ControladorEDA;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import paquete.Dependencia;
+import paquete.ListaColasDependencias;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class MoverExpediente extends javax.swing.JFrame {
     private Menu v1;
     private ControladorEDA control;
+    private ListaColasDependencias listadepen;
     DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form MoverExpediente
@@ -22,6 +25,10 @@ public class MoverExpediente extends javax.swing.JFrame {
     
     public void setControlador(ControladorEDA control){
         this.control = control;
+    }
+    
+    public void setListaDepen(ListaColasDependencias listadepen){
+        this.listadepen = listadepen;
     }
     
     public MoverExpediente() {
@@ -145,8 +152,14 @@ public class MoverExpediente extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        String [] Datos = new String[1];
+        
         if(combo.getSelectedItem().toString().equals("-Selecciona-")){
             JOptionPane.showMessageDialog(null, "Debes de eligir una dependencia");
+        }else if(combo.getSelectedItem().toString().equals("Inicio")){
+            Datos[0] = control.getColaDependencia().getInicio().getColaDependencia().obtenerItemTramite(1).getAsunto();
+            modelo.addRow(Datos);
+            
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

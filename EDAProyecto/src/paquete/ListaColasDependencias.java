@@ -67,6 +67,70 @@ public class ListaColasDependencias{
         listaColas.agregarFinal(infraestructura);
         listaColas.agregarFinal(comunicacion);
     }
+
+    public Dependencia getInicio() {
+        return inicio;
+    }
+
+    public Dependencia getBienestar() {
+        return bienestar;
+    }
+
+    public Dependencia getMatricula() {
+        return matricula;
+    }
+
+    public Dependencia getAdministracion() {
+        return administracion;
+    }
+
+    public Dependencia getVentas() {
+        return ventas;
+    }
+
+    public Dependencia getFinanzas() {
+        return finanzas;
+    }
+
+    public Dependencia getAcademico() {
+        return academico;
+    }
+
+    public Dependencia getRecursos_humanos() {
+        return recursos_humanos;
+    }
+
+    public Dependencia getTecnologia() {
+        return tecnologia;
+    }
+
+    public Dependencia getServicios_generales() {
+        return servicios_generales;
+    }
+
+    public Dependencia getOrientacion() {
+        return orientacion;
+    }
+
+    public Dependencia getBiblioteca() {
+        return biblioteca;
+    }
+
+    public Dependencia getTesoreria() {
+        return tesoreria;
+    }
+
+    public Dependencia getInfraestructura() {
+        return infraestructura;
+    }
+
+    public Dependencia getComunicacion() {
+        return comunicacion;
+    }
+
+    public DoublyLinkedList getListaColas() {
+        return listaColas;
+    }
     
     
 
