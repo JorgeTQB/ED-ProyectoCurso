@@ -3,47 +3,66 @@ package paquete;
 
 
 public class Expediente {
-    private int DNI;
-    private String Nombres;
-    private int Telefono;
-    private String email;
+    
+    private int IdTramite;
+    private int prioridad;
+    
+    private String asunto;
+    private String DocumentoReferencia;
+    
+    private Interesado interesado;
+    
+    private Dependencia depend;
 
-    public Expediente(int DNI, String Nombres, int Telefono, String email) {
-        this.DNI = DNI;
-        this.Nombres = Nombres;
-        this.Telefono = Telefono;
-        this.email = email;
+    public Expediente(int IdTramite, int prioridad, Interesado intere, String asunto, String DocumentoReferencia) {
+        this.IdTramite = IdTramite;
+        this.prioridad = prioridad;
+        this.interesado = intere;
+        this.asunto = asunto;
+        this.DocumentoReferencia = DocumentoReferencia;
+        this.depend = null;
     }
 
-    public int getDNI() {
-        return DNI;
+    public int getIdTramite() {
+        return IdTramite;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
+    public void setIdTramite(int IdTramite) {
+        this.IdTramite = IdTramite;
     }
 
-    public String getNombres() {
-        return Nombres;
+    public int getPrioridad() {
+        return prioridad;
     }
 
-    public void setNombres(String Nombres) {
-        this.Nombres = Nombres;
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
     }
 
-    public int getTelefono() {
-        return Telefono;
+    public String getAsunto() {
+        return asunto;
     }
 
-    public void setTelefono(int Telefono) {
-        this.Telefono = Telefono;
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDocumentoReferencia() {
+        return DocumentoReferencia;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDocumentoReferencia(String DocumentoReferencia) {
+        this.DocumentoReferencia = DocumentoReferencia;
     }
+
+    public Dependencia getDepend() {
+        return depend;
+    }
+
+    public void setDepend(Dependencia depend) {
+        this.depend = depend;
+    }
+    
+    
+    
 }

@@ -94,6 +94,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        combo.setSelectedIndex(1);
         combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboActionPerformed(evt);
@@ -261,11 +262,8 @@ public class MoverExpediente extends javax.swing.JFrame {
             
             modelo.removeRow(0);
             
-            Tramite aux1 = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia().desencolar();
-            aux1.setDepend(control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString()));
-            aux1.getMovimientos().agregarFinal(new Movimiento(control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()), control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString())));
-            control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString()).getColaDependencia().encolar(aux1);
-
+            control.moverTramDepend(combo.getSelectedItem().toString(), combo2.getSelectedItem().toString());
+            
             JOptionPane.showMessageDialog(null, "Traspaso realizado");
             
         }else{

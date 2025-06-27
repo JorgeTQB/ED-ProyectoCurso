@@ -5,8 +5,10 @@
 package Controlador;
 
 import paquete.Expediente;
+import paquete.Interesado;
 import paquete.ListaColasDependencias;
 import paquete.ListaTramites;
+import paquete.Movimiento;
 import paquete.Tramite;
 
 /**
@@ -22,24 +24,35 @@ public class ControladorEDA {
     public ControladorEDA() {
         listaTramites = new ListaTramites();
         colaDependencia = new ListaColasDependencias();
-        contadorId = 0;
+        contadorId = 1;
     }
     
     
-    public void agregarLT(int dni, String nombres, int telefono, String email, String asunto, String docrefe){
-        Tramite tramit = new Tramite(contadorId, 1, new Expediente(dni, nombres, telefono, email), asunto, docrefe);
-        tramit.setDepend(colaDependencia.getInicio());
-        contadorId++;
+    public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe){
+        Interesado intere = new Interesado(dni, nombres, telefono, email);
+        Expediente expe = new Expediente(contadorId, prioridad, intere, asunto, docrefe);
+        
+        expe.setDepend(colaDependencia.getInicio());
+        
+        Tramite tramit = new Tramite(expe);
+        
         listaTramites.agregar(tramit);
+        colaDependencia.getInicio().encolarDependencia(tramit); 
+        
+        contadorId++;
         
     }
-    public void agregarDP(int dni, String nombres, int telefono, String email, String asunto, String docrefe){
-        Tramite tramit = new Tramite(contadorId, 1, new Expediente(dni, nombres, telefono, email), asunto, docrefe);
-        tramit.setDepend(colaDependencia.getInicio());
-        colaDependencia.getInicio().encolarDependencia(tramit);
-        
-    }
+    
 
+    public void moverTramDepend(String combo, String combo2){
+        
+        Tramite aux1 = colaDependencia.conseguirDependencia(combo).getColaDependencia().desencolar();
+        aux1.getExpediente().setDepend(colaDependencia.conseguirDependencia(combo2));
+        aux1.getMovimientos().agregarFinal(new Movimiento(colaDependencia.conseguirDependencia(combo), colaDependencia.conseguirDependencia(combo2)));
+        colaDependencia.conseguirDependencia(combo2).getColaDependencia().encolar(aux1);
+        
+    }
+    
     public ListaTramites getListaTramites() {
         return listaTramites;
     }
