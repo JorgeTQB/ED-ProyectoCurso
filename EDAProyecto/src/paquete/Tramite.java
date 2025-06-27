@@ -36,6 +36,7 @@ public class Tramite {
         this.asunto = asunto;
         this.DocumentoReferencia = documentoReferencia;
         this.horaInicio = Calendar.getInstance();
+        this.movimientos = new DoublyLinkedList();
     }
    
 
@@ -84,5 +85,31 @@ public class Tramite {
     public Calendar getHoraFin() {
         return horaFin;
     }
+
+    public String getDocumentoReferencia() {
+        return DocumentoReferencia;
+    }
+
+    public void setDocumentoReferencia(String DocumentoReferencia) {
+        this.DocumentoReferencia = DocumentoReferencia;
+    }
+
+    public DoublyLinkedList<Movimiento> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(DoublyLinkedList<Movimiento> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
+    
+    
     
 }

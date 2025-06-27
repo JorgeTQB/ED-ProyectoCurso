@@ -42,6 +42,18 @@ public class ListaColasDependencias{
         listaColas.agregarFinal(finanzas);
     }
 
+    public Dependencia conseguirDependencia(String dependencia){
+        
+        return (Dependencia) listaColas.obtenerDependencia(dependencia);
+        
+    }
+    
+    public boolean existeDependencia(String NombreDependencia){
+
+        return listaColas.existe(NombreDependencia);
+        
+    }
+    
     public Dependencia getInicio() {
         return inicio;
     }

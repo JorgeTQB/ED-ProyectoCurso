@@ -16,6 +16,24 @@ public class Movimiento {
         this.origen = origen;
         this.destino = destino;
     }
+
+    public Dependencia getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(Dependencia origen) {
+        this.origen = origen;
+    }
+
+    public Dependencia getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Dependencia destino) {
+        this.destino = destino;
+    }
+    
+    
     
     
 }

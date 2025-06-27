@@ -4,6 +4,7 @@
  */
 package tda;
 
+import paquete.Dependencia;
 import paquete.Tramite;
 
 /**
@@ -100,6 +101,40 @@ public class DoublyLinkedList<T> {
         }
         
         return null;
+        
+    }
+    
+    public T obtenerDependencia(String dependencia){
+        Node ptr = head;
+        
+        while(ptr != null){
+            if(ptr.item() instanceof Dependencia depend){
+                String nombredepend = depend.getNombre();
+                if(dependencia == null ? nombredepend == null : dependencia.equals(nombredepend)){
+                    return (T) depend;
+                }
+            }
+            ptr = ptr.next();
+        }
+        
+        return null;
+    }
+    
+    public boolean existe(String existeDependencia){
+        
+        Node ptr = head;
+        
+        while(ptr != null){
+            if(ptr.item() instanceof Dependencia depend){
+                String nombredepend = depend.getNombre();
+                if(existeDependencia == null ? nombredepend == null : existeDependencia.equals(nombredepend)){
+                    return true;
+                }
+            }
+            ptr = ptr.next();
+        }
+        
+        return false;
         
     }
 
