@@ -7,6 +7,7 @@ package Ventana;
 import Controlador.ControladorEDA;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import paquete.Movimiento;
 import paquete.Tramite;
 import tda.Cola;
 import tda.Node;
@@ -114,7 +115,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("LISTA DE TRAMITES");
+        jLabel1.setText("COLA DE TRAMITES");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("MOVER UN EXPEDIENTE A OTRA DEPENDENCIA");
@@ -134,9 +135,9 @@ public class MoverExpediente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo, 0, 90, Short.MAX_VALUE)
+                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3))
@@ -192,41 +193,35 @@ public class MoverExpediente extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        modelo.setRowCount(0);
+        
         String [] Datos = new String[3];
         
         if(combo.getSelectedItem().toString().equals("-Selecciona-")){
             JOptionPane.showMessageDialog(null, "Debes de eligir una dependencia");
-        }else if(combo.getSelectedItem().toString().equals("Inicio")){
-            
-            Cola aux = control.getColaDependencia().getInicio().getColaDependencia();
-            
-            Node<Tramite> auxi = aux.getFrente();
-            
-            while(auxi != null){
-                Datos[0] = String.valueOf(auxi.item().getIdTramite());
-                Datos[1] = auxi.item().getExpediente().getNombres();
-                Datos[2] = auxi.item().getAsunto();
-                
-                modelo.addRow(Datos);
-                
-                auxi = auxi.next();
-            }
-        }else if(combo.getSelectedItem().toString().equals("Matricula")){
-            modelo.setRowCount(0);
-            Cola aux = control.getColaDependencia().getMatricula().getColaDependencia();
-            
-            Node<Tramite> auxi = aux.getFrente();
-            
-            while(auxi != null){
-                Datos[0] = String.valueOf(auxi.item().getIdTramite());
-                Datos[1] = auxi.item().getExpediente().getNombres();
-                Datos[2] = auxi.item().getAsunto();
-                
-                modelo.addRow(Datos);
-                
-                auxi = auxi.next();
-            }
+        
         }
+        
+        else if(control.getColaDependencia().existeDependencia(combo.getSelectedItem().toString())){
+            
+            Cola colaAux = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia();
+            
+            Node<Tramite> auxi = colaAux.getFrente();
+            
+            while(auxi != null){
+                Datos[0] = String.valueOf(auxi.item().getIdTramite());
+                Datos[1] = auxi.item().getExpediente().getNombres();
+                Datos[2] = auxi.item().getAsunto();
+                
+                modelo.addRow(Datos);
+                
+                auxi = auxi.next();
+            }
+            
+        }else{
+            throw new RuntimeException("No se encuentra la dependencia");
+        }
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -241,10 +236,32 @@ public class MoverExpediente extends javax.swing.JFrame {
         
         if(combo2.getSelectedItem().toString().equals("-Selecciona-")){
             JOptionPane.showMessageDialog(null, "Debes de eligir una dependencia");
-        }else if(combo2.getSelectedItem().toString().equals("Matricula")){
-            Tramite aux = control.getColaDependencia().getInicio().getColaDependencia().desencolar();
-            control.getColaDependencia().getMatricula().getColaDependencia().encolarFrente(aux);
+        
+        }
+        else if(control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia().esVacia() ){
+            throw new RuntimeException("No hay tramites para mover");
+        }
+        
+        
+        
+        else if(combo.getSelectedItem().toString().equals(combo2.getSelectedItem().toString())){
+            throw new RuntimeException("No se puede mover a la misma dependencia");
+        }
+        
+        else if(control.getColaDependencia().existeDependencia(combo2.getSelectedItem().toString())){
+            
+            
+            modelo.removeRow(0);
+            
+            Tramite aux1 = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia().desencolar();
+            aux1.getMovimientos().agregarFinal(new Movimiento(control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()), control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString())));
+            
+            control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString()).getColaDependencia().encolar(aux1);
+
             JOptionPane.showMessageDialog(null, "Traspaso realizado");
+            
+        }else{
+            throw new RuntimeException("No se encuentra la dependencia");
         }
             
         
