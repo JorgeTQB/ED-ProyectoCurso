@@ -120,6 +120,12 @@ public class MoverExpediente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("MOVER UN EXPEDIENTE A OTRA DEPENDENCIA");
 
+        combo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo2ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Mover");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +195,8 @@ public class MoverExpediente extends javax.swing.JFrame {
 
     private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_comboActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -254,8 +262,8 @@ public class MoverExpediente extends javax.swing.JFrame {
             modelo.removeRow(0);
             
             Tramite aux1 = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia().desencolar();
+            aux1.setDepend(control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString()));
             aux1.getMovimientos().agregarFinal(new Movimiento(control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()), control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString())));
-            
             control.getColaDependencia().conseguirDependencia(combo2.getSelectedItem().toString()).getColaDependencia().encolar(aux1);
 
             JOptionPane.showMessageDialog(null, "Traspaso realizado");
@@ -266,6 +274,10 @@ public class MoverExpediente extends javax.swing.JFrame {
             
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void combo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo2ActionPerformed
 
     /**
      * @param args the command line arguments

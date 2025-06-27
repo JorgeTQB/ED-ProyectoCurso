@@ -27,6 +27,7 @@ public class Tramite {
     private Calendar horaInicio;
     private Calendar horaFin;
     
+    private Dependencia depend;
     
 
     public Tramite(int IdTramite, int prioridad, Expediente expediente, String asunto, String documentoReferencia) {
@@ -37,6 +38,7 @@ public class Tramite {
         this.DocumentoReferencia = documentoReferencia;
         this.horaInicio = Calendar.getInstance();
         this.movimientos = new DoublyLinkedList();
+        depend = null;
     }
    
 
@@ -108,6 +110,14 @@ public class Tramite {
 
     public void setFinalizado(boolean finalizado) {
         this.finalizado = finalizado;
+    }
+
+    public Dependencia getDepend() {
+        return depend;
+    }
+
+    public void setDepend(Dependencia depend) {
+        this.depend = depend;
     }
     
     

@@ -28,13 +28,16 @@ public class ControladorEDA {
     
     public void agregarLT(int dni, String nombres, int telefono, String email, String asunto, String docrefe){
         Tramite tramit = new Tramite(contadorId, 1, new Expediente(dni, nombres, telefono, email), asunto, docrefe);
+        tramit.setDepend(colaDependencia.getInicio());
         contadorId++;
         listaTramites.agregar(tramit);
         
     }
     public void agregarDP(int dni, String nombres, int telefono, String email, String asunto, String docrefe){
         Tramite tramit = new Tramite(contadorId, 1, new Expediente(dni, nombres, telefono, email), asunto, docrefe);
+        tramit.setDepend(colaDependencia.getInicio());
         colaDependencia.getInicio().encolarDependencia(tramit);
+        
     }
 
     public ListaTramites getListaTramites() {
