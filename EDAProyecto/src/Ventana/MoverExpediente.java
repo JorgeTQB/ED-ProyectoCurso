@@ -26,6 +26,7 @@ public class MoverExpediente extends javax.swing.JFrame {
     
     public MoverExpediente() {
         initComponents();
+        setResizable(false);
         MostrarTabla();
         this.control = ControladorEDA.getInstance();
         if(control !=null){

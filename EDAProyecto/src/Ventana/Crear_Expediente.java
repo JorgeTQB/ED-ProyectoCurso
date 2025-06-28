@@ -24,6 +24,7 @@ public class Crear_Expediente extends javax.swing.JFrame {
      */
     public Crear_Expediente() {
         initComponents();
+        setResizable(false);
         this.control = ControladorEDA.getInstance();
         if(control != null){
             System.out.println("Se agarra bien el control" + control);

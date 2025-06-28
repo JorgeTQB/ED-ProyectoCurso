@@ -5,6 +5,7 @@
 package Ventana;
 
 import Controlador.ControladorEDA;
+import javax.swing.*;
 
 /**
  *
@@ -23,7 +24,19 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setResizable(false);
         this.control = ControladorEDA.getInstance();
+        
+        SwingUtilities.invokeLater(() -> { //Esto solo se aplica la ventana del menú principal
+        Timer timer1 = new Timer(5000, e -> { //Cambiar de acuerdo a lo necesitado
+        if (this.isVisible() && this.isFocused()) {
+            JOptionPane.showMessageDialog(this, "¿Sigues ahí? Recuerda continuar con tus trámites.");
+        }
+    });
+    timer1.start();
+});
+        
+        
         if(control != null){
             System.out.println("Se agarra bien el control" + control);
         }

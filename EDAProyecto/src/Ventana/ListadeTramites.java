@@ -29,6 +29,7 @@ public class ListadeTramites extends javax.swing.JFrame {
      */
     public ListadeTramites() {
         initComponents();
+        setResizable(false);
         MostrarTabla();
         control = ControladorEDA.getInstance();
         if(control != null){

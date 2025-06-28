@@ -19,6 +19,7 @@ public class CrearDependencia extends javax.swing.JFrame {
      */
     public CrearDependencia() {
         initComponents();
+        setResizable(false);
         this.control = ControladorEDA.getInstance();
         if(control != null){
             System.out.println("El control es " + control);
