@@ -16,15 +16,24 @@ import paquete.Tramite;
  * @author HOGAR
  */
 public class ControladorEDA {
+    
+    private static ControladorEDA instancia;
 
     private ListaTramites listaTramites;
     private ListaColasDependencias colaDependencia;
     private int contadorId;
     
-    public ControladorEDA() {
+    private ControladorEDA() {
         listaTramites = new ListaTramites();
         colaDependencia = new ListaColasDependencias();
         contadorId = 1;
+    }
+    
+    public static ControladorEDA getInstance(){
+        if(instancia == null){
+            instancia = new ControladorEDA();
+        }
+        return instancia;
     }
     
     
@@ -53,6 +62,16 @@ public class ControladorEDA {
         
     }
     
+    public void ControlCrearDependencia(String nombre){
+        colaDependencia.crearDependencia(nombre);
+    }
+    
+    public String[] conseguirNombresDependencia(){
+        String[] nombres = colaDependencia.conseguirNombresDP();
+        
+        return nombres;
+    }
+    
     public ListaTramites getListaTramites() {
         return listaTramites;
     }
@@ -60,11 +79,6 @@ public class ControladorEDA {
     public ListaColasDependencias getColaDependencia() {
         return colaDependencia;
     }
-
-    
-
-    
-    
     
     
 }

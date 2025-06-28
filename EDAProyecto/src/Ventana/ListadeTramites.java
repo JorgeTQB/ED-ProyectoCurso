@@ -22,20 +22,21 @@ public class ListadeTramites extends javax.swing.JFrame {
     private ControladorEDA control;
     DefaultTableModel modelo = new DefaultTableModel();
     
-    public void setControlador(ControladorEDA control){
-        this.control = control;
-    }
     
-    public void setMenu(Menu v1){
-        this.v1 = v1;
-    }
+    
     /**
      * Creates new form ListadeTramites
      */
     public ListadeTramites() {
         initComponents();
         MostrarTabla();
+        control = ControladorEDA.getInstance();
+        if(control != null){
+            System.out.println("Se ha seteado el control " + control);
+        }
     }
+    
+    
     void MostrarTabla(){
         modelo.addColumn("ID");
         modelo.addColumn("Nombres");
@@ -44,6 +45,10 @@ public class ListadeTramites extends javax.swing.JFrame {
         this.jTable1.setModel(modelo);
     }
 
+    public void setMenu(Menu v1){
+        this.v1 = v1;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,10 +133,10 @@ public class ListadeTramites extends javax.swing.JFrame {
         
 
         while(auxi != null){
-            Datos[0] = String.valueOf(auxi.item().getIdTramite());
-            Datos[1] = auxi.item().getExpediente().getNombres();
-            Datos[2] = auxi.item().getAsunto();
-            Datos[3] = auxi.item().getDepend().getNombre();
+            Datos[0] = String.valueOf(auxi.item().getExpediente().getIdTramite());
+            Datos[1] = auxi.item().getExpediente().getInteresado().getNombres();
+            Datos[2] = auxi.item().getExpediente().getAsunto();
+            Datos[3] = auxi.item().getExpediente().getDepend().getNombre();
             modelo.addRow(Datos);
                 
             auxi = auxi.next();

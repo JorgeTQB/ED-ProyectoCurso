@@ -22,7 +22,7 @@ public class ListaColasDependencias{
     * tramite3: ultimo que entro
     */
     
-    private DoublyLinkedList listaColas;
+    private DoublyLinkedList<Dependencia> listaColas;
 
     public ListaColasDependencias(){
         listaColas = new DoublyLinkedList();
@@ -41,6 +41,11 @@ public class ListaColasDependencias{
         listaColas.agregarFinal(ventas);
         listaColas.agregarFinal(finanzas);
     }
+    
+    public void crearDependencia(String nombre){
+        Dependencia nuevaDependencia = new Dependencia(nombre);
+        listaColas.agregarFinal(nuevaDependencia);
+    }
 
     public Dependencia conseguirDependencia(String dependencia){
         
@@ -52,6 +57,19 @@ public class ListaColasDependencias{
 
         return listaColas.existe(NombreDependencia);
         
+    }
+    
+    public String[] conseguirNombresDP(){
+        String[] nombres = new String[100];
+        int c = 0;
+        
+        Node<Dependencia> aux = listaColas.getHead();
+        while(aux != null){
+            nombres[c] = aux.item().getNombre();
+            aux = aux.next();
+        }
+        
+        return nombres;
     }
     
     public Dependencia getInicio() {
