@@ -27,7 +27,7 @@ public class probandoCola {
         agregar(tramite3,listaTramites);
         agregar(tramite4,listaTramites);
 
-        */
+        
         
         
        
@@ -118,5 +118,6 @@ public static void imprimirCola(Cola<Tramite> listaTramites) {
         listaTramites.encolar(aux.desencolar());
     }
 }
-
+*/
+    }
 }

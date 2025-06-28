@@ -92,7 +92,7 @@ public class DoublyLinkedList<T> {
         
         while(ptr != null){
             if(ptr.item() instanceof Tramite tramite){
-                int tramiteid = tramite.getIdTramite();
+                int tramiteid = tramite.getExpediente().getIdTramite();
                 if(Id == tramiteid){
                     return (T) tramite;
                 }

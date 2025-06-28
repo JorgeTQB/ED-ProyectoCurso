@@ -23,7 +23,7 @@ public class ListaTramites {
     public void agregar(Tramite tramite) {   
         Cola<Tramite> aux = new Cola();    
         boolean agregado = false;
-        switch(tramite.getPrioridad()){
+        switch(tramite.getExpediente().getPrioridad() ){
             case 1:
                 if(listaTramites.esVacia()){
                     listaTramites.encolar(tramite);
@@ -32,7 +32,7 @@ public class ListaTramites {
                     while(!listaTramites.esVacia()){
                         Tramite x = listaTramites.desencolar();
 
-                        if(!agregado && x.getPrioridad() > 1){
+                        if(!agregado && x.getExpediente().getPrioridad() > 1){
                             aux.encolarFrente(x);
                             agregado = true;
                         }
@@ -58,7 +58,7 @@ public class ListaTramites {
                     while(!listaTramites.esVacia()){
                         Tramite x = listaTramites.desencolar();
 
-                        if(!agregado && x.getPrioridad() > 2){
+                        if(!agregado && x.getExpediente().getPrioridad() > 2){
                             aux.encolarFrente(x);
                             agregado = true;
                         }
@@ -100,7 +100,7 @@ public class ListaTramites {
     }
 
     public Node<Tramite> getFrente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return listaTramites.getFrente(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

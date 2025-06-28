@@ -19,7 +19,7 @@ public class Cola<T> {
         Node ptr = frente;    
         while(ptr != null){
             if(ptr.item() instanceof Tramite tramite){
-                int tramiteid = tramite.getIdTramite();
+                int tramiteid = tramite.getExpediente().getIdTramite();
                 if(Id == tramiteid){
                     return (T) tramite;
                 }

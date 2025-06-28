@@ -23,7 +23,7 @@ public class Dependencia {
     public void encolarDependencia(Tramite tramite) {   
         Cola<Tramite> aux = new Cola();
         boolean agregado = false;
-        switch(tramite.getPrioridad()){
+        switch(tramite.getExpediente().getPrioridad() ){
             case 1:
                 if(colaDependencia.esVacia()){
                     colaDependencia.encolar(tramite);
@@ -32,7 +32,7 @@ public class Dependencia {
                     while(!colaDependencia.esVacia()){
                         Tramite x = colaDependencia.desencolar();
 
-                        if(!agregado && x.getPrioridad() > 1){
+                        if(!agregado && x.getExpediente().getPrioridad() > 1){
                             aux.encolarFrente(x);
                             agregado = true;
                         }
@@ -58,7 +58,7 @@ public class Dependencia {
                     while(!colaDependencia.esVacia()){
                         Tramite x = colaDependencia.desencolar();
 
-                        if(!agregado && x.getPrioridad() > 2){
+                        if(!agregado && x.getExpediente().getPrioridad() > 2){
                             aux.encolarFrente(x);
                             agregado = true;
                         }
