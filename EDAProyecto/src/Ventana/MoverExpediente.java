@@ -24,13 +24,14 @@ public class MoverExpediente extends javax.swing.JFrame {
      * Creates new form MoverExpediente
      */
     
-    public void setControlador(ControladorEDA control){
-        this.control = control;
-    }
-    
     public MoverExpediente() {
         initComponents();
         MostrarTabla();
+        this.control = ControladorEDA.getInstance();
+        if(control !=null){
+            System.out.println("Se ha seteado el control " + control);
+        }
+                
     }
     
     void MostrarTabla(){
@@ -94,7 +95,6 @@ public class MoverExpediente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        combo.setSelectedIndex(1);
         combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboActionPerformed(evt);
@@ -218,9 +218,9 @@ public class MoverExpediente extends javax.swing.JFrame {
             Node<Tramite> auxi = colaAux.getFrente();
             
             while(auxi != null){
-                Datos[0] = String.valueOf(auxi.item().getIdTramite());
-                Datos[1] = auxi.item().getExpediente().getNombres();
-                Datos[2] = auxi.item().getAsunto();
+                Datos[0] = String.valueOf(auxi.item().getExpediente().getIdTramite());
+                Datos[1] = auxi.item().getExpediente().getInteresado().getNombres();
+                Datos[2] = auxi.item().getExpediente().getAsunto();
                 
                 modelo.addRow(Datos);
                 

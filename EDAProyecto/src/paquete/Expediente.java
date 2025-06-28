@@ -62,6 +62,14 @@ public class Expediente {
     public void setDepend(Dependencia depend) {
         this.depend = depend;
     }
+
+    public Interesado getInteresado() {
+        return interesado;
+    }
+
+    public void setInteresado(Interesado interesado) {
+        this.interesado = interesado;
+    }
     
     
     
