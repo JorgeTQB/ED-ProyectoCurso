@@ -24,6 +24,9 @@ public class Dependencia {
         Cola<Tramite> aux = new Cola();
         boolean agregado = false;
         switch(tramite.getExpediente().getPrioridad() ){
+            case 0:
+                colaDependencia.encolarFrente(tramite);
+                break;
             case 1:
                 if(colaDependencia.esVacia()){
                     colaDependencia.encolar(tramite);

@@ -116,10 +116,10 @@ public class MoverExpediente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("COLA DE TRAMITES");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("MOVER UN EXPEDIENTE A OTRA DEPENDENCIA");
 
         combo2.addActionListener(new java.awt.event.ActionListener() {

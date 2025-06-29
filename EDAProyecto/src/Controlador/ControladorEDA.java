@@ -62,6 +62,10 @@ public class ControladorEDA {
         
     }
     
+    public int getContadorId(){
+        return contadorId;
+    }
+    
     public void ControlCrearDependencia(String nombre){
         colaDependencia.crearDependencia(nombre);
     }
