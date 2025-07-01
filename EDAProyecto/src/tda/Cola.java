@@ -29,7 +29,7 @@ public class Cola<T> {
         return null;
     }
     
-  /* 
+  
  public void eliminarTr(T item){
         boolean eliminado = false;
         Cola<T> aux = new Cola();
@@ -42,18 +42,18 @@ public class Cola<T> {
         if(x.equals(item) && !eliminado){
             eliminado = true;
         } else{
-        aux.encolarFinal(x);
+        aux.encolar(x);
         }}}
         
         while(!aux.esVacia()){
-        encolarFinal(aux.desencolarFinal());
+        encolar(aux.desencolarFinal());
         }
         
         if(eliminado ==true){
             System.out.println("Se eliminó con éxito!");
         }
         }
-   */
+   
    
   
     

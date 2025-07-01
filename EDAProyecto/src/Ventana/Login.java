@@ -179,8 +179,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(VerificarContraseña() & VerificarUsuario() == true){
             Menu ventana2 = new Menu();
+            ventana2.setLogin(this);
             this.setVisible(false);
             ventana2.setVisible(true);
+            jTextField1.setText(null);
+            jPasswordField1.setText(null);
         }else{
             JOptionPane.showMessageDialog(null, "Usuario o contraseña invalido");
             jPasswordField1.setText(null);
@@ -195,13 +198,17 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(VerificarContraseña() & VerificarUsuario() == true){
             Menu ventana2 = new Menu();
+            ventana2.setLogin(this);
             this.setVisible(false);
             ventana2.setVisible(true);
+            jTextField1.setText(null);
+            jPasswordField1.setText(null);
         }else{
             JOptionPane.showMessageDialog(null, "Usuario o contraseña invalido");
             jPasswordField1.setText(null);
             jTextField1.setText(null);
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton1FocusGained
