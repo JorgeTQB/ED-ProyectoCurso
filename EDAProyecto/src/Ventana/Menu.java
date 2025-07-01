@@ -5,6 +5,8 @@
 package Ventana;
 
 import Controlador.ControladorEDA;
+import static Ventana.MoverExpediente.modeloCombo;
+import static Ventana.MoverExpediente.modeloCombo2;
 import java.awt.Color;
 import javax.swing.*;
 
@@ -13,9 +15,9 @@ import javax.swing.*;
  * @author EDUARDO
  */
 public class Menu extends javax.swing.JFrame {
-
+    private Login v1;
     private ControladorEDA control;
-   
+    private JComboBox<String> combo;
     
     
     /**
@@ -41,9 +43,23 @@ public class Menu extends javax.swing.JFrame {
         if(control != null){
             System.out.println("Se agarra bien el control" + control);
         }
-        
+        if(modeloCombo.getSize()==0){
+            modeloCombo.addElement("-Selecciona-");
+            modeloCombo.addElement("Inicio");
+        }
+        if(modeloCombo2.getSize()==0){
+            modeloCombo2.addElement("-Selecciona-");
+            modeloCombo2.addElement("Inicio");
+        }
     }
-
+    
+    public void setLogin(Login v1){
+        this.v1 = v1;
+    }
+    public void setCombo(JComboBox<String> combo){
+        this.combo = combo;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -258,7 +274,6 @@ public class Menu extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("jTextField1");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.setFocusable(false);
         jTextField1.setRequestFocusEnabled(false);
@@ -312,7 +327,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
+        this.setVisible(false);
+        this.v1.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

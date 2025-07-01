@@ -5,6 +5,9 @@
 package Ventana;
 
 import Controlador.ControladorEDA;
+import static Ventana.MoverExpediente.modeloCombo;
+import static Ventana.MoverExpediente.modeloCombo2;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +17,7 @@ public class CrearDependencia extends javax.swing.JFrame {
 
     private ControladorEDA control;
     private Menu v1;
+    private MoverExpediente v4;
     /**
      * Creates new form CrearDependencia
      */
@@ -119,6 +123,11 @@ public class CrearDependencia extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = this.jTextField1.getText();
         control.ControlCrearDependencia(nombre);
+        modeloCombo.addElement(nombre);
+        modeloCombo2.addElement(nombre);
+        JOptionPane.showMessageDialog(null, "Agregado con exito");
+        jTextField1.setText(null);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

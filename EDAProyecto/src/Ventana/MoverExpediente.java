@@ -5,18 +5,21 @@
 package Ventana;
 
 import Controlador.ControladorEDA;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import paquete.Movimiento;
 import paquete.Tramite;
 import tda.Cola;
 import tda.Node;
-
 /**
  *
  * @author EDUARDO
  */
 public class MoverExpediente extends javax.swing.JFrame {
+    public static DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+    public static DefaultComboBoxModel modeloCombo2 = new DefaultComboBoxModel();
     private Menu v1;
     private ControladorEDA control;
     DefaultTableModel modelo = new DefaultTableModel();
@@ -26,40 +29,36 @@ public class MoverExpediente extends javax.swing.JFrame {
     
     public MoverExpediente() {
         initComponents();
+        
         setResizable(false);
         MostrarTabla();
         this.control = ControladorEDA.getInstance();
         if(control !=null){
             System.out.println("Se ha seteado el control " + control);
         }
-                
+        
+        
     }
     
     void MostrarTabla(){
         modelo.addColumn("ID");
         modelo.addColumn("Nombres");
         modelo.addColumn("Asunto");
+        modelo.addColumn("Prioridad");
+        
         this.jTable1.setModel(modelo);
         
-        combo.addItem("-Selecciona-");
-        combo.addItem("Inicio");
-        combo.addItem("Matricula");
-        combo.addItem("Administracion");
-        combo.addItem("Ventas");
-        combo.addItem("Finanzas");
         
-        combo2.addItem("-Selecciona-");
-        combo2.addItem("Inicio");
-        combo2.addItem("Matricula");
-        combo2.addItem("Administracion");
-        combo2.addItem("Ventas");
-        combo2.addItem("Finanzas");
         
     }
     
     
     public void setMenu(Menu v1){
         this.v1 = v1;
+    }
+    
+    public DefaultComboBoxModel getCombo(){
+        return modeloCombo;
     }
     
     /**
@@ -80,6 +79,8 @@ public class MoverExpediente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         combo2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        combo.setModel(modeloCombo);
         combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboActionPerformed(evt);
@@ -122,6 +124,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("MOVER UN EXPEDIENTE A OTRA DEPENDENCIA");
 
+        combo2.setModel(modeloCombo2);
         combo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo2ActionPerformed(evt);
@@ -134,6 +137,16 @@ public class MoverExpediente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jButton2.setText("Finalizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel4.setText("Cargar Dependencia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,8 +165,14 @@ public class MoverExpediente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -181,10 +200,14 @@ public class MoverExpediente extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(8, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -205,7 +228,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         // TODO add your handling code here:
         modelo.setRowCount(0);
         
-        String [] Datos = new String[3];
+        String [] Datos = new String[4];
         
         if(combo.getSelectedItem().toString().equals("-Selecciona-")){
             JOptionPane.showMessageDialog(null, "Debes de eligir una dependencia");
@@ -222,7 +245,7 @@ public class MoverExpediente extends javax.swing.JFrame {
                 Datos[0] = String.valueOf(auxi.item().getExpediente().getIdTramite());
                 Datos[1] = auxi.item().getExpediente().getInteresado().getNombres();
                 Datos[2] = auxi.item().getExpediente().getAsunto();
-                
+                Datos[3] = String.valueOf(auxi.item().getExpediente().getPrioridad());
                 modelo.addRow(Datos);
                 
                 auxi = auxi.next();
@@ -278,6 +301,16 @@ public class MoverExpediente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo2ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Cola colaAux = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia();            
+        Node<Tramite> auxi = colaAux.getFrente();
+        colaAux.desencolar();
+        modelo.removeRow(0);
+        JOptionPane.showMessageDialog(null, "Finalizado con exito");
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -317,8 +350,10 @@ public class MoverExpediente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo;
     private javax.swing.JComboBox<String> combo2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;

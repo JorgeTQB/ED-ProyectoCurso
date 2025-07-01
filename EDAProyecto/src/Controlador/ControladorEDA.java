@@ -37,8 +37,8 @@ public class ControladorEDA {
     }
     
     
-    public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe){
-        Interesado intere = new Interesado(dni, nombres, telefono, email);
+    public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe, boolean externo){
+        Interesado intere = new Interesado(dni, nombres, telefono, email, externo);
         Expediente expe = new Expediente(contadorId, prioridad, intere, asunto, docrefe);
         
         expe.setDepend(colaDependencia.getInicio());
@@ -47,7 +47,6 @@ public class ControladorEDA {
         
         listaTramites.agregar(tramit);
         colaDependencia.getInicio().encolarDependencia(tramit); 
-        
         contadorId++;
         
     }

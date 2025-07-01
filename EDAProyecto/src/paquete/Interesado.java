@@ -14,12 +14,14 @@ public class Interesado {
     private String Nombres;
     private int Telefono;
     private String email;
+    private boolean externo;
 
-    public Interesado(int DNI, String Nombres, int Telefono, String email) {
+    public Interesado(int DNI, String Nombres, int Telefono, String email, boolean externo) {
         this.DNI = DNI;
         this.Nombres = Nombres;
         this.Telefono = Telefono;
         this.email = email;
+        this.externo = externo;
     }
 
     public int getDNI() {
