@@ -25,6 +25,7 @@ public class ListadeTramites extends javax.swing.JFrame {
     private Menu v1;
     private ControladorEDA control;
     DefaultTableModel modelo = new DefaultTableModel();
+    private boolean cargarMov = false;
     
     
     
@@ -34,20 +35,21 @@ public class ListadeTramites extends javax.swing.JFrame {
     public ListadeTramites() {
         initComponents();
         setResizable(false);
+        
         MostrarTabla();
+        this.jTable1.setModel(modelo);
+        
         control = ControladorEDA.getInstance();
-        if(control != null){
-            System.out.println("Se ha seteado el control " + control);
-        }
     }
     
     
     void MostrarTabla(){
+        modelo.setColumnCount(0);
         modelo.addColumn("ID");
         modelo.addColumn("Nombres");
         modelo.addColumn("Asunto");
         modelo.addColumn("Dependencia");
-        this.jTable1.setModel(modelo);
+        
     }
     
     void MostrarTabla2(){
@@ -93,7 +95,7 @@ public class ListadeTramites extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jToggleButton1.setText("Cargar");
+        jToggleButton1.setText("Cargar Tramites");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -122,20 +124,17 @@ public class ListadeTramites extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(131, 131, 131)))
-                        .addGap(32, 32, 32)
+                                .addGap(151, 151, 151)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,6 +143,10 @@ public class ListadeTramites extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(jToggleButton1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +175,9 @@ public class ListadeTramites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        
+        MostrarTabla();
+        
         
         modelo.setRowCount(0);
         
@@ -203,6 +209,7 @@ public class ListadeTramites extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
         Integer idbuscado = Integer.valueOf(this.jTextField1.getText());
 
         Tramite tram = control.getListaTramites().getListaTramites().obtenerItemTramite(idbuscado);
