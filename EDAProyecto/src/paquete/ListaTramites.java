@@ -20,6 +20,51 @@ public class ListaTramites {
     }
     
     
+    
+    public void agregar(Tramite tramite) {
+        Cola<Tramite> aux = new Cola<>();
+        boolean agregado = false; //Flag para saber si se agregó o no
+
+        int prioridadNueva = tramite.getExpediente().getPrioridad();
+
+        // Caso 0
+        if (prioridadNueva == 0) {
+            listaTramites.encolarFrente(tramite);
+            return;
+        }
+
+        // Caso 3
+        if (prioridadNueva == 3) {
+            listaTramites.encolar(tramite);
+            return;
+        }
+
+        // Caso 1 o 2
+        while (!listaTramites.esVacia()) {
+            Tramite actual = listaTramites.desencolar();
+            int prioridadActual = actual.getExpediente().getPrioridad();
+
+            if (!agregado && prioridadActual > prioridadNueva) {
+                aux.encolar(tramite); 
+                agregado = true; //Se cambia a true
+            }
+
+            aux.encolar(actual); 
+        }
+
+        // Se inserta al final
+        if (!agregado) {
+            aux.encolar(tramite);
+        }
+
+        // Restaura la Cola original
+        while (!aux.esVacia()) {
+            listaTramites.encolar(aux.desencolar());
+        }
+    }
+    
+    
+    /*
     public void agregar(Tramite tramite) {   
         Cola<Tramite> aux = new Cola();    
         boolean agregado = false;
@@ -84,6 +129,7 @@ public class ListaTramites {
         }
     
     }
+*/
     
     public void eliminar(){
         listaTramites.desencolar();
