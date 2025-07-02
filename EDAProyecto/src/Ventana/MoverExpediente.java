@@ -300,11 +300,41 @@ public class MoverExpediente extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Cola colaAux = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia();            
-        Node<Tramite> auxi = colaAux.getFrente();
-        colaAux.desencolar();
-        modelo.removeRow(0);
-        JOptionPane.showMessageDialog(null, "Finalizado con exito");
+     
+      
+        Cola<Expediente> colaAux = control.getColaDependencia()
+                                      .conseguirDependencia(combo.getSelectedItem().toString())
+                                      .getColaDependencia();
+
+    Expediente expFinalizado = colaAux.desencolar();
+
+    // Buscar y desencolar el trámite correspondiente
+    Cola<Tramite> tramites = control.getListaTramites().getListaTramites();
+    Cola<Tramite> aux = new Cola<>();
+    Tramite tramiteFinalizar = null;
+
+    while (!tramites.esVacia()) {
+        Tramite t = tramites.desencolar();
+        if (t.getExpediente().getIdTramite() == expFinalizado.getIdTramite() && tramiteFinalizar == null) {
+            tramiteFinalizar = t; // Encontrado y no lo volvemos a encolar
+        } else {
+            aux.encolar(t); // Guardamos los demás
+        }
+    }
+
+    // Restaurar la cola original sin el trámite finalizado
+    while (!aux.esVacia()) {
+        tramites.encolar(aux.desencolar());
+    }
+
+    if (tramiteFinalizar != null) {
+        tramiteFinalizar.finalizarTramite();
+    } else {
+        JOptionPane.showMessageDialog(null, "No se encontró el trámite asociado.");
+    }
+
+    modelo.removeRow(0);
+    JOptionPane.showMessageDialog(null, "Finalizado con éxito");
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
