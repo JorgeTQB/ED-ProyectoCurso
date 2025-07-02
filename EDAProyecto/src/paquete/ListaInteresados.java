@@ -5,6 +5,7 @@
 package paquete;
 
 import tda.DoublyLinkedList;
+import tda.Node;
 
 /**
  *
@@ -17,6 +18,23 @@ public class ListaInteresados {
         this.interesados = new DoublyLinkedList();
     }
     
+    public void AgregarInteresado(Interesado interesado){
+        interesados.agregarFinal(interesado);
+    }
     
+    public boolean existInter(int dni){
+        Node<Interesado> auxi = interesados.getHead();
+        boolean encontrado = false;
+        while(auxi!=null){
+            if(auxi.item().getDNI()==dni){
+                return true;
+            }
+        }
+        return encontrado;
+    }
+
+    public DoublyLinkedList<Interesado> getInteresados() {
+        return interesados;
+    }
     
 }

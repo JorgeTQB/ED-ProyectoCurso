@@ -8,6 +8,7 @@ import paquete.Expediente;
 import paquete.Interesado;
 import paquete.ListaColasDependencias;
 import paquete.ListaDoblyTramites;
+import paquete.ListaInteresados;
 import paquete.ListaTramites;
 import paquete.Movimiento;
 import paquete.Tramite;
@@ -22,11 +23,14 @@ public class ControladorEDA {
 
     private ListaTramites listaTramites;
     private ListaColasDependencias colaDependencia;
+    private ListaInteresados listaInteresados;
     private int contadorId;
+    
     
     private ControladorEDA() {
         listaTramites = new ListaTramites();
         colaDependencia = new ListaColasDependencias();
+        listaInteresados = new ListaInteresados();
         contadorId = 1;
     }
     
@@ -38,8 +42,12 @@ public class ControladorEDA {
     }
     
     
+    
     public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe, boolean externo){
         Interesado intere = new Interesado(dni, nombres, telefono, email, externo);
+        if(!listaInteresados.existInter(dni)){
+            listaInteresados.AgregarInteresado(intere);
+        }
         Expediente expe = new Expediente(contadorId, prioridad, intere, asunto, docrefe);
         
         expe.setDepend(colaDependencia.getInicio());
@@ -63,6 +71,10 @@ public class ControladorEDA {
         aux1.getMovimientos().agregarFinal(new Movimiento(colaDependencia.conseguirDependencia(combo), colaDependencia.conseguirDependencia(combo2)));
         colaDependencia.conseguirDependencia(combo2).encolarDependencia(aux1);
         
+    }
+
+    public ListaInteresados getListaInteresados() {
+        return listaInteresados;
     }
     
     public int getContadorId(){
