@@ -13,82 +13,137 @@ import tda.*;
 public class Dependencia {
     private String nombre;
 
-    private Cola<Tramite> colaDependencia;
+    private Cola<Expediente> colaDependencia;
 
     public Dependencia(String nombre) {
         this.nombre = nombre;
         this.colaDependencia = new Cola();
     }
     
-    public void encolarDependencia(Tramite tramite) {   
-        Cola<Tramite> aux = new Cola();
+    
+    public void encolarDependencia(Expediente exp) {
+        Cola<Expediente> aux = new Cola<>();
         boolean agregado = false;
-        switch(tramite.getExpediente().getPrioridad() ){
-            case 0:
-                colaDependencia.encolarFrente(tramite);
-                break;
-            case 1:
-                if(colaDependencia.esVacia()){
-                    colaDependencia.encolar(tramite);
-                    break;
-                } else{
-                    while(!colaDependencia.esVacia()){
-                        Tramite x = colaDependencia.desencolar();
 
-                        if(!agregado && x.getExpediente().getPrioridad() > 1){
-                            aux.encolarFrente(x);
-                            agregado = true;
+        int prioridadNueva = exp.getPrioridad();
+
+        // Caso 0: máxima prioridad
+        if (prioridadNueva == 0) {
+            colaDependencia.encolarFrente(exp);
+            return;
+        }
+
+        // Caso 3: mínima prioridad
+        if (prioridadNueva == 3) {
+            colaDependencia.encolar(exp);
+            return;
+        }
+
+        // Caso 1 o 2
+        while (!colaDependencia.esVacia()) {
+            Expediente actual = colaDependencia.desencolar();
+            int prioridadActual = actual.getPrioridad();
+
+            if (!agregado && prioridadActual > prioridadNueva) {
+                aux.encolar(exp); // inserta antes de uno con menor prioridad
+                agregado = true;
+            }
+
+            aux.encolar(actual); // conserva el orden original
+        }
+
+        // Si no se insertó porque todos eran de prioridad igual o mayor
+        if (!agregado) {
+            aux.encolar(exp);
+        }
+
+        // Restaurar elementos a la cola principal
+        while (!aux.esVacia()) {
+            colaDependencia.encolar(aux.desencolar());
+        }
+    }
+    
+    /*
+    public void encolarDependencia(Expediente exp) {   
+        Cola<Expediente> aux = new Cola();
+        boolean agregado = false;
+        switch(exp.getPrioridad() ){
+            case 1:
+                
+                if(colaDependencia.esVacia()){
+                    colaDependencia.encolar(exp);
+                    break;
+                }else{
+                    
+                    while(!colaDependencia.esVacia()){
+                        Expediente x = colaDependencia.desencolar();
+
+                        System.out.println(x.getIdExpediente());
+                        
+                        // Cola [1,1,1]
+                        // desencolar - 1
+                        // encolar - 0
+                        if(x.getPrioridad() == 2){
+                            aux.encolar(exp);
                         }
-                        aux.encolarFrente(x);
+                        
+                        aux.encolar(x);
+                        
                     }
-                }
-                
-                if(!agregado){
-                    aux.encolarFrente(tramite);
-                }
-                
-                while (!aux.esVacia()) {
-                    colaDependencia.encolarFrente(aux.desencolar());
+                    
+                    while(!aux.esVacia()){
+                        Expediente expe = aux.desencolar();
+                        colaDependencia.encolar(expe);
+                    }
+                    
                 }
                 
                 break;
                 
             case 2:
+                
                 if(colaDependencia.esVacia()){
-                    colaDependencia.encolar(tramite);
+                    colaDependencia.encolar(exp);
                     break;
-                } else{
+                }else{
+                    
                     while(!colaDependencia.esVacia()){
-                        Tramite x = colaDependencia.desencolar();
+                        Expediente x = colaDependencia.desencolar();
 
-                        if(!agregado && x.getExpediente().getPrioridad() > 2){
-                            aux.encolarFrente(x);
-                            agregado = true;
+                        System.out.println(x.getIdExpediente());
+                        
+                        // Cola [1,1,3]
+                        // desencolar - 1
+                        // encolar - 0
+                        if(x.getPrioridad() == 2){
+                            aux.encolar(exp);
                         }
                         
-                        aux.encolarFrente(x);
+                        aux.encolar(x);
+                        
                     }
+                    
+                    while(!aux.esVacia()){
+                        Expediente expe = aux.desencolar();
+                        colaDependencia.encolar(expe);
+                    }
+                    
                 }
                 
-                if(!agregado){
-                    aux.encolarFrente(tramite);
-                }
-                
-                while (!aux.esVacia()) {
-                    colaDependencia.encolarFrente(aux.desencolar());
-                }
                 
                 break;
                 
             case 3:
-                colaDependencia.encolar(tramite);
+                colaDependencia.encolar(exp);
                 break;
         
         }
     
     }
 
-    public Cola<Tramite> getColaDependencia() {
+    */
+
+    public Cola<Expediente> getColaDependencia() {
         return colaDependencia;
     }
 

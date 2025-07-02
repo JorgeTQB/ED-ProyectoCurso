@@ -7,6 +7,7 @@ package Controlador;
 import paquete.Expediente;
 import paquete.Interesado;
 import paquete.ListaColasDependencias;
+import paquete.ListaDoblyTramites;
 import paquete.ListaTramites;
 import paquete.Movimiento;
 import paquete.Tramite;
@@ -46,18 +47,21 @@ public class ControladorEDA {
         Tramite tramit = new Tramite(expe);
         
         listaTramites.agregar(tramit);
-        colaDependencia.getInicio().encolarDependencia(tramit); 
+        
+        colaDependencia.getInicio().encolarDependencia(expe);
+        
         contadorId++;
         
     }
     
 
-    public void moverTramDepend(String combo, String combo2){
+    public void moverExpToDepend(String combo, String combo2){
         
-        Tramite aux1 = colaDependencia.conseguirDependencia(combo).getColaDependencia().desencolar();
-        aux1.getExpediente().setDepend(colaDependencia.conseguirDependencia(combo2));
+        Expediente aux1 = colaDependencia.conseguirDependencia(combo).getColaDependencia().desencolar();
+        aux1.setDepend(colaDependencia.conseguirDependencia(combo2));
+        
         aux1.getMovimientos().agregarFinal(new Movimiento(colaDependencia.conseguirDependencia(combo), colaDependencia.conseguirDependencia(combo2)));
-        colaDependencia.conseguirDependencia(combo2).getColaDependencia().encolar(aux1);
+        colaDependencia.conseguirDependencia(combo2).encolarDependencia(aux1);
         
     }
     
