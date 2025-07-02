@@ -8,7 +8,12 @@ import Controlador.ControladorEDA;
 import static Ventana.MoverExpediente.modeloCombo;
 import static Ventana.MoverExpediente.modeloCombo2;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -39,6 +44,52 @@ public class Menu extends javax.swing.JFrame {
     });
     timer1.start();
 });
+        
+         JTableHeader encabezado = jTable1.getTableHeader();
+        encabezado.setFont(new Font("Arial", Font.BOLD, 16));
+        encabezado.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        
+        jTable1.setShowHorizontalLines(false);
+        jTable1.setShowVerticalLines(false);
+
+        if (jTable1.getParent() instanceof JViewport) {
+            Container scrollPane = jTable1.getParent().getParent();
+            if (scrollPane instanceof JScrollPane) {
+                ((JScrollPane) scrollPane).setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            }
+        }
+       
+        jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (!isSelected) {
+                c.setBackground(Color.WHITE); 
+                c.setForeground(Color.BLACK); 
+            }
+
+            return c;
+        }
+    });
+        encabezado.setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+
+                JLabel tabla = new JLabel(value.toString());
+                tabla.setFont(new Font("Arial", Font.BOLD, 14));
+                tabla.setOpaque(true);
+                tabla.setBackground(new Color(253,154,0));
+                tabla.setForeground(Color.WHITE);
+                tabla.setHorizontalAlignment(CENTER);
+                tabla.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+                return tabla;
+            }
+        });
+        
+
         jTextField2.setText(String.valueOf(control.getContadorId()-1));
         if(control != null){
             System.out.println("Se agarra bien el control" + control);
@@ -83,10 +134,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -272,16 +324,6 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 150, 130));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField1.setFocusable(false);
-        jTextField1.setRequestFocusEnabled(false);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 560, 140));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/campus_MG_6569.jpg-removebg-preview.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 640, 300));
-
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setText("MENÚ PRINCIPAL");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
@@ -298,6 +340,27 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 80, 30));
+
+        jTable1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Prioridad", "Inicio", "Asunto"
+            }
+        ));
+        jTable1.setEnabled(false);
+        jTable1.setFocusable(false);
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 560, 150));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/campus_MG_6569.jpg-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 640, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -333,7 +396,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jTextField2.setText(String.valueOf(control.getContadorId()-1));
-        jTextField1.setText("ACÁ IRÁN LOS TRÁMITES URGENTES");
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -395,7 +458,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
