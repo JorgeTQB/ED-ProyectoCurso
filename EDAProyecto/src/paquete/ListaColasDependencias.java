@@ -22,8 +22,6 @@ public class ListaColasDependencias{
     public ListaColasDependencias(){
         listaColas = new DoublyLinkedList();
         inicio = new Dependencia("Inicio");
-
-        
         
         listaColas.agregarFinal(inicio);
 

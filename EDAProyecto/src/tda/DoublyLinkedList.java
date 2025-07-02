@@ -137,6 +137,41 @@ public class DoublyLinkedList<T> {
         return false;
         
     }
+    
+    public boolean existeID(int buscarID){
+        
+        Node ptr = head;
+        
+        while(ptr != null){
+            if(ptr.item() instanceof Tramite tramit){
+                int idbuscado = tramit.getExpediente().getIdTramite();
+                if(idbuscado == buscarID){
+                    return true;
+                }
+            }
+            ptr = ptr.next();
+        }
+        
+        return false;
+        
+    }
+    
+    public T DevolverTramiteExisteID(int buscandoID){
+        
+        Node ptr = head;
+        
+        while(ptr != null){
+            if(ptr.item() instanceof Tramite tramit){
+                int idbuscado = tramit.getExpediente().getIdTramite();
+                if(idbuscado == buscandoID){
+                    return (T) tramit;
+                }
+            }
+            ptr = ptr.next();
+        }
+        
+        return null;
+    }
 
     public void mostrarAdelante() {
         Node ptr = head;

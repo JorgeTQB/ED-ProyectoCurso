@@ -20,7 +20,6 @@ public class Tramite {
     
     private Expediente expediente;
     
-    private DoublyLinkedList<Movimiento> movimientos;
 
     private boolean finalizado = false;
     
@@ -35,7 +34,6 @@ public class Tramite {
         this.expediente = expediente;
         
         this.horaInicio = Calendar.getInstance();
-        this.movimientos = new DoublyLinkedList();
         
     }
    
@@ -61,14 +59,6 @@ public class Tramite {
 
     public Calendar getHoraFin() {
         return horaFin;
-    }
-
-    public DoublyLinkedList<Movimiento> getMovimientos() {
-        return movimientos;
-    }
-
-    public void setMovimientos(DoublyLinkedList<Movimiento> movimientos) {
-        this.movimientos = movimientos;
     }
 
     public boolean isFinalizado() {

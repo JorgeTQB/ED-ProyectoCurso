@@ -1,6 +1,8 @@
 
 package paquete;
 
+import tda.DoublyLinkedList;
+
 
 public class Expediente {
     
@@ -13,6 +15,8 @@ public class Expediente {
     private Interesado interesado;
     
     private Dependencia depend;
+    
+    private DoublyLinkedList<Movimiento> movimientos;
 
     public Expediente(int IdTramite, int prioridad, Interesado intere, String asunto, String DocumentoReferencia) {
         this.IdTramite = IdTramite;
@@ -21,6 +25,7 @@ public class Expediente {
         this.asunto = asunto;
         this.DocumentoReferencia = DocumentoReferencia;
         this.depend = null;
+        this.movimientos = new DoublyLinkedList();
     }
 
     public int getIdTramite() {
@@ -69,6 +74,14 @@ public class Expediente {
 
     public void setInteresado(Interesado interesado) {
         this.interesado = interesado;
+    }
+
+    public DoublyLinkedList<Movimiento> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(DoublyLinkedList<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
     
     

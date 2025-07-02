@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import paquete.Expediente;
 import paquete.Movimiento;
 import paquete.Tramite;
 import tda.Cola;
@@ -119,7 +120,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("COLA DE TRAMITES");
+        jLabel1.setText("COLA DE EXPEDIENTES");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("MOVER UN EXPEDIENTE A OTRA DEPENDENCIA");
@@ -180,7 +181,7 @@ public class MoverExpediente extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(88, 88, 88))))
+                        .addGap(55, 55, 55))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,13 +240,13 @@ public class MoverExpediente extends javax.swing.JFrame {
             
             Cola colaAux = control.getColaDependencia().conseguirDependencia(combo.getSelectedItem().toString()).getColaDependencia();
             
-            Node<Tramite> auxi = colaAux.getFrente();
+            Node<Expediente> auxi = colaAux.getFrente();
             
             while(auxi != null){
-                Datos[0] = String.valueOf(auxi.item().getExpediente().getIdTramite());
-                Datos[1] = auxi.item().getExpediente().getInteresado().getNombres();
-                Datos[2] = auxi.item().getExpediente().getAsunto();
-                Datos[3] = String.valueOf(auxi.item().getExpediente().getPrioridad());
+                Datos[0] = String.valueOf(auxi.item().getIdTramite());
+                Datos[1] = auxi.item().getInteresado().getNombres();
+                Datos[2] = auxi.item().getAsunto();
+                Datos[3] = String.valueOf(auxi.item().getPrioridad());
                 modelo.addRow(Datos);
                 
                 auxi = auxi.next();
@@ -286,7 +287,7 @@ public class MoverExpediente extends javax.swing.JFrame {
             
             modelo.removeRow(0);
             
-            control.moverTramDepend(combo.getSelectedItem().toString(), combo2.getSelectedItem().toString());
+            control.moverExpToDepend(combo.getSelectedItem().toString(), combo2.getSelectedItem().toString());
             
             JOptionPane.showMessageDialog(null, "Traspaso realizado");
             

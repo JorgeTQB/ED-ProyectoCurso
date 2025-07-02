@@ -8,7 +8,10 @@ public class Cola<T> {
     private Node<T> ultimo;
     
     
-    public Cola(){frente = null;ultimo = null;}
+    public Cola(){
+        frente = null;
+        ultimo = null;
+    }
 
     public Cola(Node<T> frente, Node<T> ultimo) {
         this.frente = frente;
@@ -30,20 +33,22 @@ public class Cola<T> {
     }
     
   
- public void eliminarTr(T item){
+    public void eliminarTr(T item){
         boolean eliminado = false;
         Cola<T> aux = new Cola();
         if(esVacia()){
             System.out.println("La cola esta vacía!"); 
         } else{
-        while(!esVacia()){
-        T x = desencolarFinal();
-        
-        if(x.equals(item) && !eliminado){
-            eliminado = true;
-        } else{
-        aux.encolar(x);
-        }}}
+            while(!esVacia()){
+                T x = desencolarFinal();
+
+                if(x.equals(item) && !eliminado){
+                    eliminado = true;
+                } else{
+                aux.encolar(x);
+                }
+            }
+        }
         
         while(!aux.esVacia()){
         encolar(aux.desencolarFinal());
@@ -52,7 +57,7 @@ public class Cola<T> {
         if(eliminado ==true){
             System.out.println("Se eliminó con éxito!");
         }
-        }
+    }
    
    
   
