@@ -39,6 +39,7 @@ public class Crear_Expediente extends javax.swing.JFrame {
     }
     
     void MostrarTabla(){
+        modelo.addColumn("DNI");
         modelo.addColumn("Nombres");
         modelo.addColumn("Telefono");
         modelo.addColumn("Email");
@@ -95,6 +96,12 @@ public class Crear_Expediente extends javax.swing.JFrame {
 
         jLabel2.setText("Nombres");
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Teléfono");
 
         jLabel4.setText("Email");
@@ -144,6 +151,11 @@ public class Crear_Expediente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setText("Registrar CA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         combo.addActionListener(new java.awt.event.ActionListener() {
@@ -335,34 +347,63 @@ public class Crear_Expediente extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-
-        
+ 
         modelo.setRowCount(0);
-        String a = jTextField7.getText() ;
-                
-        int cant = a.length();
+        String textoBusqueda = jTextField7.getText().trim() ;
+         if (textoBusqueda.isEmpty()) {
+                return;
+            }
         
-        String [] Datos = new String[3];
-        DoublyLinkedList<Interesado> colaAux = control.getListaInteresados().getInteresados();
-        Node<Interesado> auxi = colaAux.getHead();
+        if(textoBusqueda.length()>4){
+            textoBusqueda = textoBusqueda.substring(0, 1);
+        }
+        
+        String [] Datos = new String[4];
+        DoublyLinkedList<Interesado> listaInteresados = control.getListaInteresados().getInteresados();
+        Node<Interesado> auxi = listaInteresados.getHead();
        
-        
+               
         while(auxi!=null){
             
-            String b = String.valueOf(auxi.item().getDNI());
+            String dniStr = String.valueOf(auxi.item().getDNI());
             
-            if(a.substring(0,cant).equals(b.substring(0, cant))){
-                Datos[0] = auxi.item().getNombres();
-                Datos[1] = String.valueOf(auxi.item().getTelefono());
-                Datos[2] = String.valueOf(auxi.item().getEmail());
+            if(dniStr.length() >= textoBusqueda.length() && dniStr.substring(0, textoBusqueda.length()).equals(textoBusqueda)){
+                Datos[0] = String.valueOf(auxi.item().getDNI());
+                Datos[1] = auxi.item().getNombres();
+                Datos[2] = String.valueOf(auxi.item().getTelefono());
+                Datos[3] = String.valueOf(auxi.item().getEmail());
+                
                 modelo.addRow(Datos);
             }
+            auxi = auxi.next();
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void combo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(null, "Seleccione un interesado de la tabla");
+            return;
+        }
+        String dni = (String) modelo.getValueAt(fila, 0);
+        String nombres = (String) modelo.getValueAt(fila, 1);
+        String telefono = (String) modelo.getValueAt(fila, 2);
+        String email = (String) modelo.getValueAt(fila, 3);
+        
+        jTextField1.setText(dni);
+        jTextField2.setText(nombres);
+        jTextField3.setText(telefono);
+        jTextField4.setText(email);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

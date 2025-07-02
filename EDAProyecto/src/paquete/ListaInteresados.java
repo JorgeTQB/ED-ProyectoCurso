@@ -29,6 +29,7 @@ public class ListaInteresados {
             if(auxi.item().getDNI()==dni){
                 return true;
             }
+            auxi = auxi.next();
         }
         return encontrado;
     }
