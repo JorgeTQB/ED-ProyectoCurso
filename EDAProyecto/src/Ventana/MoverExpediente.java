@@ -302,76 +302,20 @@ public class MoverExpediente extends javax.swing.JFrame {
         // TODO add your handling code here:
      
       
-        Cola<Expediente> colaAux = control.getColaDependencia()
-                                      .conseguirDependencia(combo.getSelectedItem().toString())
-                                      .getColaDependencia();
+        Tramite tramiteFinalizar = control.FinalizarTramiteNoEspecifico(combo.getSelectedItem().toString());
 
-    Expediente expFinalizado = colaAux.desencolar();
-
-    // Buscar y desencolar el trámite correspondiente
-    Cola<Tramite> tramites = control.getListaTramites().getListaTramites();
-    Cola<Tramite> aux = new Cola<>();
-    Tramite tramiteFinalizar = null;
-
-    while (!tramites.esVacia()) {
-        Tramite t = tramites.desencolar();
-        if (t.getExpediente().getIdTramite() == expFinalizado.getIdTramite() && tramiteFinalizar == null) {
-            tramiteFinalizar = t; // Encontrado y no lo volvemos a encolar
+        if (tramiteFinalizar != null) {
+            tramiteFinalizar.finalizarTramite();
         } else {
-            aux.encolar(t); // Guardamos los demás
+            JOptionPane.showMessageDialog(null, "No se encontró el trámite asociado.");
         }
-    }
 
-    // Restaurar la cola original sin el trámite finalizado
-    while (!aux.esVacia()) {
-        tramites.encolar(aux.desencolar());
-    }
+        modelo.removeRow(0);
+        JOptionPane.showMessageDialog(null, "Finalizado con éxito");
 
-    if (tramiteFinalizar != null) {
-        tramiteFinalizar.finalizarTramite();
-    } else {
-        JOptionPane.showMessageDialog(null, "No se encontró el trámite asociado.");
-    }
-
-    modelo.removeRow(0);
-    JOptionPane.showMessageDialog(null, "Finalizado con éxito");
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MoverExpediente().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> combo;

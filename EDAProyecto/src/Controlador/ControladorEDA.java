@@ -12,6 +12,8 @@ import paquete.ListaInteresados;
 import paquete.ListaTramites;
 import paquete.Movimiento;
 import paquete.Tramite;
+import tda.Cola;
+import tda.Node;
 
 /**
  *
@@ -72,6 +74,95 @@ public class ControladorEDA {
         colaDependencia.conseguirDependencia(combo2).encolarDependencia(aux1);
         
     }
+    
+    public Tramite FinalizarTramiteNoEspecifico(String combo) {
+        
+        Cola<Expediente> colaAux = this.colaDependencia.conseguirDependencia(combo).getColaDependencia();
+
+        Expediente expFinalizado = colaAux.desencolar();
+
+        // Buscar y desencolar el trámite correspondiente
+        Cola<Tramite> tramites = this.listaTramites.getListaTramites();
+        Cola<Tramite> aux = new Cola<>();
+        Tramite tramiteFinalizar = null;
+
+        while (!tramites.esVacia()) {
+            Tramite t = tramites.desencolar();
+            if (t.getExpediente().getIdTramite() == expFinalizado.getIdTramite() && tramiteFinalizar == null) {
+                tramiteFinalizar = t; // Encontrado y no lo volvemos a encolar
+            } else {
+                aux.encolar(t); // Guardamos los demás
+            }
+        }
+
+        // Restaurar la cola original sin el trámite finalizado
+        while (!aux.esVacia()) {
+            tramites.encolar(aux.desencolar());
+        }
+        
+        return tramiteFinalizar;
+        
+    }    
+    
+    public void FinalizarTramiteEspecifico(int idExpediente) {
+        
+        //Finalizar Expediente en las Colas
+        Tramite tram = this.listaTramites.get(idExpediente);
+        String dependencia = tram.getExpediente().getDepend().getNombre();
+        
+        Cola<Expediente> colaAux = this.colaDependencia.conseguirDependencia(dependencia).getColaDependencia();
+        
+        Node<Expediente> auxExp = colaAux.getFrente();
+        
+        while(auxExp != null){
+            
+            if(auxExp.item().getIdTramite() == idExpediente){
+                colaAux.eliminarTr(auxExp.item());
+                System.out.println("Se elimina el id " + auxExp.item().getIdTramite());
+            }
+            
+            auxExp = auxExp.next();
+        }
+        
+        //Finalizar Expediente en la lista Tramites
+        Cola<Tramite> tramites = this.listaTramites.getListaTramites();
+        
+        Node<Tramite> auxTram = tramites.getFrente();
+        
+        while(auxTram != null){
+            
+            if(auxTram.item().getExpediente().getIdTramite() == idExpediente){
+                tramites.eliminarTr(auxTram.item());
+                System.out.println("Se elimina el id " + auxTram.item().getExpediente().getIdTramite());
+            }
+            
+            auxTram = auxTram.next();
+        }
+        
+        /*
+        Cola<Tramite> aux = new Cola();
+        
+        
+        Tramite tramiteFinalizar = null;
+
+        while (!tramites.esVacia()) {
+            Tramite t = tramites.desencolar();
+            if (t.getExpediente().getIdTramite() == expFinalizado.getIdTramite() && tramiteFinalizar == null) {
+                tramiteFinalizar = t; // Encontrado y no lo volvemos a encolar
+            } else {
+                aux.encolar(t); // Guardamos los demás
+            }
+        }
+
+        // Restaurar la cola original sin el trámite finalizado
+        while (!aux.esVacia()) {
+            tramites.encolar(aux.desencolar());
+        }
+        
+        return tramiteFinalizar;
+        */
+    }   
+    
 
     public ListaInteresados getListaInteresados() {
         return listaInteresados;

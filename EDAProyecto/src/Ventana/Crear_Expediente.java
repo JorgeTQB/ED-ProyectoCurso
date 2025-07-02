@@ -10,13 +10,7 @@ package Ventana;
 import Controlador.ControladorEDA;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import paquete.Expediente;
-import paquete.Tramite;
-import paquete.Dependencia;
 import paquete.Interesado;
-import paquete.ListaColasDependencias;
-import paquete.ListaInteresados;
-import tda.Cola;
 import tda.DoublyLinkedList;
 import tda.Node;
 
@@ -31,10 +25,8 @@ public class Crear_Expediente extends javax.swing.JFrame {
     public Crear_Expediente() {
         initComponents();
         setResizable(false);
+        
         this.control = ControladorEDA.getInstance();
-        if(control != null){
-            System.out.println("Se agarra bien el control" + control);
-        }
         MostrarTabla();
     }
     
