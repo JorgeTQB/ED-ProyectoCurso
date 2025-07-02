@@ -59,7 +59,22 @@ public class Cola<T> {
         }
     }
    
-   
+    public Cola<T> copiar() {
+        Cola<T> copia = new Cola<>();
+        Cola<T> temp = new Cola<>();
+
+        while (!this.esVacia()) {
+            T elemento = this.desencolar();
+            copia.encolar(elemento);
+            temp.encolar(elemento);
+        }
+
+        while (!temp.esVacia()) {
+            this.encolar(temp.desencolar());
+        }
+
+        return copia;
+    }
   
     
     public boolean esVacia(){

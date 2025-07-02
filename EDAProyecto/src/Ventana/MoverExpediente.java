@@ -46,11 +46,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         modelo.addColumn("Nombres");
         modelo.addColumn("Asunto");
         modelo.addColumn("Prioridad");
-        
-        this.jTable1.setModel(modelo);
-        
-        
-        
+        this.jTable1.setModel(modelo); 
     }
     
     

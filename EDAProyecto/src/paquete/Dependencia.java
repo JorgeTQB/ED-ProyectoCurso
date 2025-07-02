@@ -23,17 +23,17 @@ public class Dependencia {
     
     public void encolarDependencia(Expediente exp) {
         Cola<Expediente> aux = new Cola<>();
-        boolean agregado = false;
+        boolean agregado = false; //Flag para saber si se agregó o no
 
         int prioridadNueva = exp.getPrioridad();
 
-        // Caso 0: máxima prioridad
+        // Caso 0
         if (prioridadNueva == 0) {
             colaDependencia.encolarFrente(exp);
             return;
         }
 
-        // Caso 3: mínima prioridad
+        // Caso 3
         if (prioridadNueva == 3) {
             colaDependencia.encolar(exp);
             return;
@@ -45,19 +45,19 @@ public class Dependencia {
             int prioridadActual = actual.getPrioridad();
 
             if (!agregado && prioridadActual > prioridadNueva) {
-                aux.encolar(exp); // inserta antes de uno con menor prioridad
-                agregado = true;
+                aux.encolar(exp); 
+                agregado = true; //Se cambia a true
             }
 
-            aux.encolar(actual); // conserva el orden original
+            aux.encolar(actual); 
         }
 
-        // Si no se insertó porque todos eran de prioridad igual o mayor
+        // Se inserta al final
         if (!agregado) {
             aux.encolar(exp);
         }
 
-        // Restaurar elementos a la cola principal
+        // Restaura la Cola original
         while (!aux.esVacia()) {
             colaDependencia.encolar(aux.desencolar());
         }

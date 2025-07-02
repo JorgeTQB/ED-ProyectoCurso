@@ -11,9 +11,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import paquete.*;
+import tda.*;
 
 /**
  *
@@ -23,7 +30,7 @@ public class Menu extends javax.swing.JFrame {
     private Login v1;
     private ControladorEDA control;
     private JComboBox<String> combo;
-    
+    DefaultTableModel modelo = new DefaultTableModel();
     
     /**
      * Creates new form Menu
@@ -35,7 +42,7 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         this.control = ControladorEDA.getInstance();
-        
+        MostrarTabla();
         SwingUtilities.invokeLater(() -> { //Esto solo se aplica la ventana del menú principal
         Timer timer1 = new Timer(500000, e -> { //Cambiar de acuerdo a lo necesitado
         if (this.isVisible()) {
@@ -102,6 +109,14 @@ public class Menu extends javax.swing.JFrame {
             modeloCombo2.addElement("-Selecciona-");
             modeloCombo2.addElement("Inicio");
         }
+    }
+    
+    void MostrarTabla(){
+        modelo.addColumn("ID");
+        modelo.addColumn("Prioridad");
+        modelo.addColumn("Fecha Inicio");
+        modelo.addColumn("DNI");
+        this.jTable1.setModel(modelo); 
     }
     
     public void setLogin(Login v1){
@@ -342,17 +357,6 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 80, 30));
 
         jTable1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Prioridad", "Inicio", "Asunto"
-            }
-        ));
         jTable1.setEnabled(false);
         jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
@@ -395,8 +399,43 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
         jTextField2.setText(String.valueOf(control.getContadorId()-1));
+        int contador = 0;
+        
+        Cola<Tramite> aux = control.getListaTramites().getListaTramites().copiar();
+        modelo.setRowCount(0);
+             
+    while(!aux.esVacia()){
+        
+        String [] Datos = new String[4];
+        Tramite t = aux.desencolar();
+        Calendar x = t.getHoraInicio();
+        LocalTime inicio = x.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+        LocalTime actual = LocalTime.now();
+        
+        long minutos = ChronoUnit.MINUTES.between(inicio,actual);
+        long horas = minutos/60;
+        
+        int hora = t.getHoraInicio().get(Calendar.HOUR_OF_DAY);
+        int minutos2 = t.getHoraInicio().get(Calendar.MINUTE);
+        
 
+        if(minutos >= 1){ //Cambiar dependiendo de la urgencia de tiempo
+                System.out.println("AGREGUÉ: " + t.getExpediente().getIdTramite() + "\t");
+                Datos[0] = String.valueOf(t.getExpediente().getIdTramite());
+                Datos[1] = String.valueOf(t.getExpediente().getPrioridad());
+                Datos[2] = String.format("%02d:%02d", hora, minutos2);
+                Datos[3] = String.valueOf(t.getExpediente().getInteresado().getDNI());
+                modelo.addRow(Datos);
+                contador++;
+        }   
+    }
+    
+ 
+    if(contador > 1){
+        JOptionPane.showMessageDialog(this, "Tiene trámites pendientes " +contador+" URGENTES!","",JOptionPane.WARNING_MESSAGE);
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

@@ -45,9 +45,9 @@ public class ControladorEDA {
     
     public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe, boolean externo){
         Interesado intere = new Interesado(dni, nombres, telefono, email, externo);
-        if(!listaInteresados.existInter(dni)){
-            listaInteresados.AgregarInteresado(intere);
-        }
+        //if(!listaInteresados.existInter(dni)){
+        //    listaInteresados.AgregarInteresado(intere);
+        //}
         Expediente expe = new Expediente(contadorId, prioridad, intere, asunto, docrefe);
         
         expe.setDepend(colaDependencia.getInicio());
