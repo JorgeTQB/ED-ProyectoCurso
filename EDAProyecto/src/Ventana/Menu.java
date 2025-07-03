@@ -69,7 +69,7 @@ public class Menu extends javax.swing.JFrame {
         
         
         //Diseño de la tabla
-         JTableHeader encabezado = jTable1.getTableHeader();
+        JTableHeader encabezado = jTable1.getTableHeader();
         encabezado.setFont(new Font("Arial", Font.BOLD, 16));
         encabezado.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
