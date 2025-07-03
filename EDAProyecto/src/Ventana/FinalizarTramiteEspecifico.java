@@ -8,6 +8,7 @@ import Controlador.ControladorEDA;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import paquete.Tramite;
 
 /**
  *
@@ -117,7 +118,15 @@ public class FinalizarTramiteEspecifico extends javax.swing.JFrame {
         }
         
         int id = Integer.parseInt(this.jTextField1.getText());
-        control.FinalizarTramiteEspecifico(id);
+        Tramite tramFin = control.FinalizarTramiteEspecifico(id);
+        
+        if(tramFin == null){
+            JOptionPane.showMessageDialog(null, "No se encontró el ID del trámite","",JOptionPane.WARNING_MESSAGE);
+            return;
+        }else{
+            control.getListaFintramites().AgregarTramFin(tramFin);
+        }
+        
         
         LocalTime horaActual = LocalTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");

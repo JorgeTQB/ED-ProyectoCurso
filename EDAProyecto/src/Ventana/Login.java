@@ -188,7 +188,17 @@ public class Login extends javax.swing.JFrame {
             jTextField1.setText(null);
             jPasswordField1.setText(null);
         }else{
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalido");
+            JOptionPane.showMessageDialog(
+            null,
+            "<html>" +
+            "<div style='text-align:center; width:300px;'>" +
+            "<h2 style='color:#D32F2F; font-family:Segoe UI;'>❌ Error</h2>" +
+            "<p style='font-size:14px;'>Usuario o contraseña <b>inválido</b>.</p>" +
+            "</div>" +
+            "</html>",
+            "Acceso Denegado",
+            JOptionPane.ERROR_MESSAGE
+            );
             jPasswordField1.setText(null);
             jTextField1.setText(null);
         }
@@ -207,7 +217,18 @@ public class Login extends javax.swing.JFrame {
             jTextField1.setText(null);
             jPasswordField1.setText(null);
         }else{
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalido");
+            JOptionPane.showMessageDialog(
+            null,
+            "<html>" +
+            "<div style='text-align:center; width:300px;'>" +
+            "<h2 style='color:#D32F2F; font-family:Segoe UI;'>❌ Error</h2>" +
+            "<p style='font-size:14px;'>Usuario o contraseña <b>inválido</b>.</p>" +
+            "</div>" +
+            "</html>",
+            "Acceso Denegado",
+            JOptionPane.ERROR_MESSAGE
+            );
+
             jPasswordField1.setText(null);
             jTextField1.setText(null);
         }

@@ -335,9 +335,11 @@ public class MoverExpediente extends javax.swing.JFrame {
      
       
         Tramite tramiteFinalizar = control.FinalizarTramiteNoEspecifico(combo.getSelectedItem().toString());
-
+        
         if (tramiteFinalizar != null) {
+            control.getListaFintramites().AgregarTramFin(tramiteFinalizar);
             tramiteFinalizar.finalizarTramite();
+            
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró el trámite asociado.");
         }
