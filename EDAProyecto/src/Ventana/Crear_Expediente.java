@@ -243,7 +243,7 @@ public class Crear_Expediente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
@@ -252,13 +252,14 @@ public class Crear_Expediente extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addGap(22, 22, 22))
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(41, 41, 41))))
         );
 
         jPanel2.setBackground(new java.awt.Color(250, 250, 250));
@@ -432,7 +433,6 @@ public class Crear_Expediente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,10 +497,18 @@ public class Crear_Expediente extends javax.swing.JFrame {
             int prioridad = Integer.parseInt(combo.getSelectedItem().toString());
             int dni = Integer.parseInt(this.jTextField1.getText());
             String nombres = this.jTextField2.getText();
+            
             int telefono = Integer.parseInt(this.jTextField3.getText());
+            String tel = String.valueOf(telefono);
+            if(tel.length() != 9){
+                JOptionPane.showMessageDialog(null, "Telefono invalido", "", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
             String email = this.jTextField4.getText();
             String asunto = this.jTextField5.getText();
             String docref = this.jTextField6.getText();
+            
             boolean externo = combo2.getSelectedItem().toString().equals("Externo");
             
             if(jTextField1.getText().trim().isEmpty()||jTextField2.getText().trim().isEmpty()||jTextField3.getText().trim().isEmpty()||jTextField4.getText().trim().isEmpty()
@@ -512,17 +520,14 @@ public class Crear_Expediente extends javax.swing.JFrame {
             
             String regexCorreo = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
             if(!email.matches(regexCorreo)){
-                JOptionPane.showMessageDialog(null, "Ingrese un correo válido", "",JOptionPane.WARNING_MESSAGE);
-                jTextField1.setText(null);
-                jTextField2.setText(null);
-                jTextField3.setText(null);
+                JOptionPane.showMessageDialog(null, "Ingrese un correo válido", "", JOptionPane.WARNING_MESSAGE);
                 jTextField4.setText(null);
-                jTextField5.setText(null);
-                jTextField6.setText(null);
-            throw new IllegalArgumentException("El correo no es válido");}
+                return;
+            }
             
-        control.agregarInicio(prioridad, dni, nombres, telefono, email, asunto, docref, externo);
-        JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+            control.agregarInicio(prioridad, dni, nombres, telefono, email, asunto, docref, externo);
+            JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+        
         }catch(NumberFormatException e){
             if(jTextField1.getText().trim().isEmpty()||jTextField2.getText().trim().isEmpty()||jTextField3.getText().trim().isEmpty()||jTextField4.getText().trim().isEmpty()
                     ||jTextField5.getText().trim().isEmpty()||jTextField6.getText().trim().isEmpty()
@@ -532,7 +537,8 @@ public class Crear_Expediente extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "El DNI y Teléfono deben ser números", "",JOptionPane.WARNING_MESSAGE);
 
-        } 
+        }
+        
         jTextField1.setText(null);
         jTextField2.setText(null);
         jTextField3.setText(null);

@@ -72,6 +72,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("ID");
@@ -110,6 +111,7 @@ public class Visualizacion extends javax.swing.JDialog {
 
         jLabel4.setText("Asunto");
 
+        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
         jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField6.setText("jTextField6");
         jTextField6.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -117,6 +119,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jTextField6.setOpaque(true);
         jTextField6.setRequestFocusEnabled(false);
 
+        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField7.setText("jTextField7");
         jTextField7.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -124,6 +127,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jTextField7.setOpaque(true);
         jTextField7.setRequestFocusEnabled(false);
 
+        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField1.setText("jTextField1");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -139,6 +143,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Nombre");
 
+        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField2.setText("jTextField2");
         jTextField2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -149,6 +154,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("DNI");
 
+        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField3.setText("jTextField3");
         jTextField3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -159,6 +165,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Prioridad");
 
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextArea1.setRows(5);
@@ -174,6 +181,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Email");
 
+        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField4.setText("jTextField4");
         jTextField4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -184,6 +192,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Fecha de Inicio");
 
+        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField5.setText("jTextField5");
         jTextField5.setDisabledTextColor(new java.awt.Color(0, 0, 0));

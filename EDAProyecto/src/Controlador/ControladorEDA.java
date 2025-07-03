@@ -7,7 +7,6 @@ package Controlador;
 import paquete.Expediente;
 import paquete.Interesado;
 import paquete.ListaColasDependencias;
-import paquete.ListaDoblyTramites;
 import paquete.ListaInteresados;
 import paquete.ListaTramites;
 import paquete.Movimiento;
