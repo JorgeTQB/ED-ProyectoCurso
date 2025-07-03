@@ -27,6 +27,7 @@ public class ControladorEDA {
     private ListaColasDependencias colaDependencia;
     private ListaInteresados listaInteresados;
     private int contadorId;
+    private int contadorTramites;
     
     
     private ControladorEDA() {
@@ -61,6 +62,7 @@ public class ControladorEDA {
         colaDependencia.getInicio().encolarDependencia(expe);
         
         contadorId++;
+        contadorTramites++;
         
     }
     
@@ -99,7 +101,7 @@ public class ControladorEDA {
         while (!aux.esVacia()) {
             tramites.encolar(aux.desencolar());
         }
-        
+        contadorTramites--;
         return tramiteFinalizar;
         
     }    
@@ -111,8 +113,9 @@ public class ControladorEDA {
         String dependencia = tram.getExpediente().getDepend().getNombre();
         
         Cola<Expediente> colaAux = this.colaDependencia.conseguirDependencia(dependencia).getColaDependencia();
-        
         Node<Expediente> auxExp = colaAux.getFrente();
+        
+        contadorTramites--;
         
         while(auxExp != null){
             
@@ -170,6 +173,10 @@ public class ControladorEDA {
     
     public int getContadorId(){
         return contadorId;
+    }
+    
+    public int getContadorTramites(){
+        return this.contadorTramites;
     }
     
     public void ControlCrearDependencia(String nombre){

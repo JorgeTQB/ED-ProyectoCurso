@@ -138,6 +138,7 @@ public class DoublyLinkedList<T> {
         
     }
     
+   
     public boolean existeID(int buscarID){
         
         Node ptr = head;
