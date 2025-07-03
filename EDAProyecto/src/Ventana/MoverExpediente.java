@@ -33,6 +33,8 @@ public class MoverExpediente extends javax.swing.JFrame {
         
         setResizable(false);
         MostrarTabla();
+        setLocationRelativeTo(null);
+
         this.control = ControladorEDA.getInstance();
         if(control !=null){
             System.out.println("Se ha seteado el control " + control);

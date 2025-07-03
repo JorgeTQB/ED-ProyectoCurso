@@ -25,7 +25,8 @@ public class Crear_Expediente extends javax.swing.JFrame {
     public Crear_Expediente() {
         initComponents();
         setResizable(false);
-        
+        setLocationRelativeTo(null);
+
         this.control = ControladorEDA.getInstance();
         MostrarTabla();
     }
@@ -302,20 +303,33 @@ public class Crear_Expediente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        int prioridad = Integer.parseInt(combo.getSelectedItem().toString());
-        int dni = Integer.parseInt(this.jTextField1.getText());
-        String nombres = this.jTextField2.getText();
-        int telefono = Integer.parseInt(this.jTextField3.getText());
-        String email = this.jTextField4.getText();
-        String asunto = this.jTextField5.getText();
-        String docref = this.jTextField6.getText();
-        boolean externo = combo2.getSelectedItem().toString().equals("Externo");
-        
+
+        try{
+            int prioridad = Integer.parseInt(combo.getSelectedItem().toString());
+            int dni = Integer.parseInt(this.jTextField1.getText());
+            String nombres = this.jTextField2.getText();
+            int telefono = Integer.parseInt(this.jTextField3.getText());
+            String email = this.jTextField4.getText();
+            String asunto = this.jTextField5.getText();
+            String docref = this.jTextField6.getText();
+            boolean externo = combo2.getSelectedItem().toString().equals("Externo");
+
+            String regexCorreo = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+            if(!email.matches(regexCorreo)){
+                JOptionPane.showMessageDialog(null, "Ingrese un correo válido", "",JOptionPane.WARNING_MESSAGE);
+                jTextField1.setText(null);
+                jTextField2.setText(null);
+                jTextField3.setText(null);
+                jTextField4.setText(null);
+                jTextField5.setText(null);
+                jTextField6.setText(null);
+            throw new IllegalArgumentException("El correo no es válido");}
+            
         control.agregarInicio(prioridad, dni, nombres, telefono, email, asunto, docref, externo);
-        
-        
         JOptionPane.showMessageDialog(null, "Se agregó correctamente");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El DNI y Teléfono deben ser números", "",JOptionPane.WARNING_MESSAGE);
+        } 
         jTextField1.setText(null);
         jTextField2.setText(null);
         jTextField3.setText(null);

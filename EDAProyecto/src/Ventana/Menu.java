@@ -43,15 +43,32 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         this.control = ControladorEDA.getInstance();
         MostrarTabla();
+        setLocationRelativeTo(null);
+
         SwingUtilities.invokeLater(() -> { //Esto solo se aplica la ventana del menú principal
         Timer timer1 = new Timer(500000, e -> { //Cambiar de acuerdo a lo necesitado
-        if (this.isVisible()) {
-            JOptionPane.showMessageDialog(this, "¿Sigues ahí? Recuerda continuar con tus trámites.");
-        }
-    });
-    timer1.start();
-});
+            if (this.isVisible()) {
+                JOptionPane.showMessageDialog(this, "¿Sigues ahí? Recuerda continuar con tus trámites.");
+                }
+            }
+        );
         
+        //Alerta de urgencia de tramites
+        Timer timer2 = new Timer(10000, e -> { //Cambiar de acuerdo a lo necesitado
+            if (this.isVisible()) {
+                generarAlerta();
+                }
+            }
+        );
+        
+        timer1.start();
+        timer2.start();
+        });
+        
+
+        
+        
+        //Diseño de la tabla
          JTableHeader encabezado = jTable1.getTableHeader();
         encabezado.setFont(new Font("Arial", Font.BOLD, 16));
         encabezado.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -333,6 +350,11 @@ public class Menu extends javax.swing.JFrame {
         jTextField2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField2.setFocusable(false);
         jTextField2.setRequestFocusEnabled(false);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -420,8 +442,34 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        generarAlerta();
         
-        jTextField2.setText(String.valueOf(control.getContadorId()-1));
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        CrearDependencia ventana6 = new CrearDependencia();
+        ventana6.setMenu(this);
+        this.setVisible(false);
+        ventana6.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        FinalizarTramiteEspecifico ventana7 = new FinalizarTramiteEspecifico();
+        ventana7.setMenu(this);
+        this.setVisible(false);
+        ventana7.setVisible(true);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    
+    public void generarAlerta(){
+    jTextField2.setText(String.valueOf(control.getContadorTramites()));
         int contador = 0;
         
         Cola<Tramite> aux = control.getListaTramites().getListaTramites().copiar();
@@ -457,24 +505,11 @@ public class Menu extends javax.swing.JFrame {
     if(contador > 1){
         JOptionPane.showMessageDialog(this, "Tiene trámites pendientes " +contador+" URGENTES!","",JOptionPane.WARNING_MESSAGE);
     }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CrearDependencia ventana6 = new CrearDependencia();
-        ventana6.setMenu(this);
-        this.setVisible(false);
-        ventana6.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        FinalizarTramiteEspecifico ventana7 = new FinalizarTramiteEspecifico();
-        ventana7.setMenu(this);
-        this.setVisible(false);
-        ventana7.setVisible(true);
-        
-    }//GEN-LAST:event_jButton7ActionPerformed
-
+    
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
