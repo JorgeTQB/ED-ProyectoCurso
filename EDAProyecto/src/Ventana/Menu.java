@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -44,7 +46,8 @@ public class Menu extends javax.swing.JFrame {
         this.control = ControladorEDA.getInstance();
         MostrarTabla();
         setLocationRelativeTo(null);
-
+        Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
+        setIconImage(iconoulima);
         SwingUtilities.invokeLater(() -> { //Esto solo se aplica la ventana del menú principal
         Timer timer1 = new Timer(500000, e -> { //Cambiar de acuerdo a lo necesitado
             if (this.isVisible()) {
@@ -312,7 +315,7 @@ public class Menu extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(204, 204, 204));
         jButton8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Lista Tramites Finalizados");
+        jButton8.setText("Tramites Finalizados");
         jButton8.setBorder(null);
         jButton8.setBorderPainted(false);
         jButton8.setContentAreaFilled(false);
@@ -327,14 +330,14 @@ public class Menu extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 180, 40));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 170, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 440));
 
         jPanel4.setBackground(new java.awt.Color(253, 154, 0));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("+NOTIFICACIONES");
+        jLabel6.setText("+ NOTIFICACIONES");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -499,7 +502,13 @@ public class Menu extends javax.swing.JFrame {
 
     
     public void generarAlerta(){
-    jTextField2.setText(String.valueOf(control.getContadorTramites()));
+        
+        if(control.getContadorTramites()<0){
+            jTextField2.setText("0");
+        } else{
+            jTextField2.setText(String.valueOf(control.getContadorTramites()));
+        }
+
         int contador = 0;
         
         Cola<Tramite> aux = control.getListaTramites().getListaTramites().copiar();
@@ -533,6 +542,7 @@ public class Menu extends javax.swing.JFrame {
     
  
     if(contador > 1){
+        control.reproducirSonido2();
         JOptionPane.showMessageDialog(this, "Tiene trámites pendientes " +contador+" URGENTES!","",JOptionPane.WARNING_MESSAGE);
     }
     

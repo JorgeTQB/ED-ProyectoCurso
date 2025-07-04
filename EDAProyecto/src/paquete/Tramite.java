@@ -56,6 +56,10 @@ public class Tramite {
     public Calendar getHoraInicio() {
         return horaInicio;
     }
+    
+    public void setHoraFin(Calendar horaFin){
+        this.horaFin = horaFin;
+    }
 
     public Calendar getHoraFin() {
         return horaFin;

@@ -23,4 +23,10 @@ public class ListaTramitesFinalizados {
     public void AgregarTramFin(Tramite tramite){
         tramites.agregarInicio(tramite);
     }
+    
+    public Tramite get(int ID){
+        Tramite tram = (Tramite) tramites.obtenerItem(ID);
+        return tram;
+    }
+    
 }

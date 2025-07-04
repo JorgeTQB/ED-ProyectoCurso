@@ -5,8 +5,18 @@
 package Ventana;
 
 import Controlador.ControladorEDA;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import paquete.Tramite;
 
@@ -25,7 +35,8 @@ public class FinalizarTramiteEspecifico extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-
+        Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
+        setIconImage(iconoulima);
         this.control = ControladorEDA.getInstance();
         if(control !=null){
             System.out.println("Se ha seteado el control " + control);
@@ -124,6 +135,10 @@ public class FinalizarTramiteEspecifico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se encontró el ID del trámite","",JOptionPane.WARNING_MESSAGE);
             return;
         }else{
+            
+            control.reproducirSonido();
+            tramFin.setFinalizado(true);
+            tramFin.setHoraFin(Calendar.getInstance());
             control.getListaFintramites().AgregarTramFin(tramFin);
         }
         
@@ -144,6 +159,11 @@ public class FinalizarTramiteEspecifico extends javax.swing.JFrame {
         v1.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
+  
+
+    
+    
     /**
      * @param args the command line arguments
      */
