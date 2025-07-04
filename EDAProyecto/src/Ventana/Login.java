@@ -24,7 +24,8 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         setLocationRelativeTo(null);
 
-        
+        Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
+        setIconImage(iconoulima);
         
     
     }

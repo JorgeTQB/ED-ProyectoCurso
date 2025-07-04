@@ -15,7 +15,7 @@ import java.util.Calendar;
  *
  * @author PC
  */
-public class Visualizacion extends javax.swing.JDialog {
+public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
     private ControladorEDA control;
     /**
      * Creates new form Visualizacion
@@ -23,7 +23,7 @@ public class Visualizacion extends javax.swing.JDialog {
      * @param modal
      * @param tramite
      */
-    public Visualizacion(java.awt.Frame parent, boolean modal, int id) {
+    public VisualizacionFINALIZADOS(java.awt.Frame parent, boolean modal, int id) {
         super(parent, "Detalle del trámite", true);
         control = ControladorEDA.getInstance();
         initComponents();
@@ -34,19 +34,20 @@ public class Visualizacion extends javax.swing.JDialog {
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        Tramite tramite = control.getListaTramites().get(id);
+        Tramite tramite = control.getListaFintramites().get(id);
         
         jTextField1.setText(String.valueOf(id));
         jTextField2.setText(tramite.getExpediente().getInteresado().getNombres());
-        jTextField3.setText(String.valueOf(tramite.getExpediente().getPrioridad()));
         jTextField4.setText(String.valueOf(tramite.getExpediente().getInteresado().getDNI()));
         jTextField5.setText(String.valueOf(tramite.getExpediente().getInteresado().getTelefono()));
-        jTextField6.setText(tramite.getExpediente().getInteresado().getEmail());
+        jTextField3.setText(tramite.getExpediente().getInteresado().getEmail());
         
         int hora = tramite.getHoraInicio().get(Calendar.HOUR_OF_DAY);
         int minutos2 = tramite.getHoraInicio().get(Calendar.MINUTE);
-        jTextField7.setText(String.format("%02d:%02d", hora, minutos2));
-        
+        int hora2 = tramite.getHoraFin().get(Calendar.HOUR_OF_DAY);
+        int minutos3 = tramite.getHoraFin().get(Calendar.MINUTE);
+        jTextField6.setText(String.format("%02d:%02d", hora, minutos2));
+        jTextField7.setText(String.format("%02d:%02d", hora2, minutos3));
         jTextArea1.setText(tramite.getExpediente().getAsunto());
     
     }
@@ -168,7 +169,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jTextField3.setRequestFocusEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Prioridad");
+        jLabel7.setText("Email");
 
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
@@ -184,7 +185,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jLabel8.setText("Telefono");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setText("Email");
+        jLabel9.setText("Hora de Inicio");
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -195,7 +196,7 @@ public class Visualizacion extends javax.swing.JDialog {
         jTextField4.setRequestFocusEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setText("Fecha de Inicio");
+        jLabel10.setText("Hora Final");
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -309,21 +310,22 @@ public class Visualizacion extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Visualizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizacionFINALIZADOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Visualizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizacionFINALIZADOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Visualizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizacionFINALIZADOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Visualizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizacionFINALIZADOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int id = 1;
-                Visualizacion dialog = new Visualizacion(new javax.swing.JFrame(), true, id);
+                VisualizacionFINALIZADOS dialog = new VisualizacionFINALIZADOS(new javax.swing.JFrame(), true, id);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

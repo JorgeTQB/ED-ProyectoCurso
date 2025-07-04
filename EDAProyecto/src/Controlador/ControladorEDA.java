@@ -4,6 +4,13 @@
  */
 package Controlador;
 
+import java.io.IOException;
+import java.io.InputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import paquete.Expediente;
 import paquete.Interesado;
 import paquete.ListaColasDependencias;
@@ -46,6 +53,50 @@ public class ControladorEDA {
         return instancia;
     }
     
+    public void reproducirSonido() {
+        try {
+            InputStream audioSrc = getClass().getResourceAsStream("/imagenes/sonidonoti.wav");
+            if (audioSrc == null) { //No se encuentra el archivo y retorna nada
+                return;
+            }
+
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioSrc);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        }
+    }
+    
+    public void reproducirSonido2() {
+        try {
+            InputStream audioSrc = getClass().getResourceAsStream("/imagenes/alertaurgente.wav");
+            if (audioSrc == null) { //No se encuentra el archivo y retorna nada
+                return;
+            }
+
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioSrc);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        }
+    }
+    
+     public void reproducirSonido3() {
+        try {
+            InputStream audioSrc = getClass().getResourceAsStream("/imagenes/alerta3.wav");
+            if (audioSrc == null) { //No se encuentra el archivo y retorna nada
+                return;
+            }
+
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioSrc);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        }
+    }
     
     
     public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe, boolean externo){
@@ -119,8 +170,6 @@ public class ControladorEDA {
         Cola<Expediente> colaAux = this.colaDependencia.conseguirDependencia(dependencia).getColaDependencia();
         Node<Expediente> auxExp = colaAux.getFrente();
         
-        contadorTramites--;
-        
         while(auxExp != null){
             
             if(auxExp.item().getIdTramite() == idExpediente){
@@ -147,7 +196,7 @@ public class ControladorEDA {
             
             auxTram = auxTram.next();
         }
-       
+       contadorTramites--;
        return tramiteFin;
     }   
     

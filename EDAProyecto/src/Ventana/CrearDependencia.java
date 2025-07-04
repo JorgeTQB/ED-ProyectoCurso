@@ -7,6 +7,8 @@ package Ventana;
 import Controlador.ControladorEDA;
 import static Ventana.MoverExpediente.modeloCombo;
 import static Ventana.MoverExpediente.modeloCombo2;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +27,8 @@ public class CrearDependencia extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-
+        Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
+        setIconImage(iconoulima);
         this.control = ControladorEDA.getInstance();
         if(control != null){
             System.out.println("El control es " + control);
@@ -127,6 +130,7 @@ public class CrearDependencia extends javax.swing.JFrame {
         control.ControlCrearDependencia(nombre);
         modeloCombo.addElement(nombre);
         modeloCombo2.addElement(nombre);
+        control.reproducirSonido3();
         JOptionPane.showMessageDialog(null, "Agregado con exito");
         jTextField1.setText(null);
         

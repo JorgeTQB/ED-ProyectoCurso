@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,14 +41,13 @@ public class Crear_Expediente extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-
+        Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
+        setIconImage(iconoulima);
         this.control = ControladorEDA.getInstance();
         MostrarTabla();
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setBackground(Color.WHITE);
         //Tabla
-        
-        
         jTable1.setRowSelectionAllowed(true);
         jTable1.setColumnSelectionAllowed(false);
         jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -526,6 +527,7 @@ public class Crear_Expediente extends javax.swing.JFrame {
             }
             
             control.agregarInicio(prioridad, dni, nombres, telefono, email, asunto, docref, externo);
+            control.reproducirSonido3();
             JOptionPane.showMessageDialog(null, "Se agregó correctamente");
         
         }catch(NumberFormatException e){
