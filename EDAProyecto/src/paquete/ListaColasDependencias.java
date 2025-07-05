@@ -30,6 +30,7 @@ public class ListaColasDependencias{
     public void crearDependencia(String nombre){
         Dependencia nuevaDependencia = new Dependencia(nombre);
         listaColas.agregarFinal(nuevaDependencia);
+        
     }
 
     public Dependencia conseguirDependencia(String dependencia){
