@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Calendar;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -126,8 +127,9 @@ public class ListadeTramites extends javax.swing.JFrame {
     
     void MostrarTabla2(){
         modelo.setColumnCount(0);
-        modelo.addColumn("De la Dependencia");
-        modelo.addColumn("A la Dependencia");
+        modelo.addColumn("Origen");
+        modelo.addColumn("Destino");
+        modelo.addColumn("Hora");
     }
 
     public void setMenu(Menu v1){
@@ -345,15 +347,19 @@ public class ListadeTramites extends javax.swing.JFrame {
 
             modelo.setRowCount(0);
             jTextField1.setText("");
-            String[] Datos = new String[2];
+            String[] Datos = new String[3];
 
             DoublyLinkedList movimientos = tram.getExpediente().getMovimientos();
             Node<Movimiento> mov = movimientos.getHead();
+            
+            int hora = mov.item().getFecha().get(Calendar.HOUR);
+            int minutos2 = mov.item().getFecha().get(Calendar.MINUTE);
 
+                       
             while(mov != null){
                 Datos[0] = mov.item().getOrigen().getNombre();
                 Datos[1] = mov.item().getDestino().getNombre();
-
+                Datos[2] = String.format("%02d:%02d", hora, minutos2);
                 modelo.addRow(Datos);
 
                 mov = mov.next();

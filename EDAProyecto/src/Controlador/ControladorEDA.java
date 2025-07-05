@@ -6,6 +6,7 @@ package Controlador;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -129,8 +130,9 @@ public class ControladorEDA {
         
         Expediente aux1 = colaDependencia.conseguirDependencia(combo).getColaDependencia().desencolar();
         aux1.setDepend(colaDependencia.conseguirDependencia(combo2));
-        
+                
         aux1.getMovimientos().agregarFinal(new Movimiento(colaDependencia.conseguirDependencia(combo), colaDependencia.conseguirDependencia(combo2)));
+        aux1.getMovimientos().getTail().item().setFecha(Calendar.getInstance());
         colaDependencia.conseguirDependencia(combo2).encolarDependencia(aux1);
         
     }

@@ -337,7 +337,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(253, 154, 0));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("+ NOTIFICACIONES");
+        jLabel6.setText("+ NOTIFICACIONES DE TRÁMITES URGENTES PENDIENTES");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -527,7 +527,7 @@ public class Menu extends javax.swing.JFrame {
         
         int hora = t.getHoraInicio().get(Calendar.HOUR_OF_DAY);
         int minutos2 = t.getHoraInicio().get(Calendar.MINUTE);
-        
+       
 
         if(minutos >= 1){ //Cambiar dependiendo de la urgencia de tiempo
                 System.out.println("AGREGUÉ: " + t.getExpediente().getIdTramite() + "\t");

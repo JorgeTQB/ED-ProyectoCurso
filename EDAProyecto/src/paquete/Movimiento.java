@@ -4,6 +4,8 @@
  */
 package paquete;
 
+import java.util.Calendar;
+
 /**
  *
  * @author EDUARDO
@@ -11,6 +13,7 @@ package paquete;
 public class Movimiento {
     private Dependencia origen;
     private Dependencia destino;
+    private Calendar fecha;
 
     public Movimiento(Dependencia origen, Dependencia destino) {
         this.origen = origen;
@@ -19,6 +22,14 @@ public class Movimiento {
 
     public Dependencia getOrigen() {
         return origen;
+    }
+    
+    public void setFecha(Calendar fecha){
+        this.fecha = fecha;
+    }
+    
+    public Calendar getFecha(){
+        return this.fecha;
     }
 
     public void setOrigen(Dependencia origen) {
