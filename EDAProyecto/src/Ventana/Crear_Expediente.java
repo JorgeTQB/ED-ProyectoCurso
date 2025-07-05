@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import paquete.Interesado;
+import paquete.Tramite;
 import tda.DoublyLinkedList;
 import tda.Node;
 
@@ -526,7 +527,8 @@ public class Crear_Expediente extends javax.swing.JFrame {
                 return;
             }
             
-            control.agregarInicio(prioridad, dni, nombres, telefono, email, asunto, docref, externo);
+            Tramite nuevoTramite = control.agregarInicio(prioridad, dni, nombres, telefono, email, asunto,externo);
+            nuevoTramite.getExpediente().agregarDocumentoReferencia(docref);
             control.reproducirSonido3();
             JOptionPane.showMessageDialog(null, "Se agregó correctamente");
         

@@ -11,6 +11,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import paquete.ArbolDocumentoReferencia;
+import paquete.DocumentoReferencia;
 import paquete.Expediente;
 import paquete.Interesado;
 import paquete.ListaColasDependencias;
@@ -34,6 +36,7 @@ public class ControladorEDA {
     private ListaColasDependencias colaDependencia;
     private ListaInteresados listaInteresados;
     private ListaTramitesFinalizados listaFintramites;
+    private ArbolDocumentoReferencia arbolDocref;
     private int contadorId;
     private int contadorTramites;
     
@@ -43,6 +46,7 @@ public class ControladorEDA {
         colaDependencia = new ListaColasDependencias();
         listaInteresados = new ListaInteresados();
         listaFintramites = new ListaTramitesFinalizados();
+        arbolDocref = new ArbolDocumentoReferencia();
         contadorId = 1;
     }
     
@@ -99,12 +103,13 @@ public class ControladorEDA {
     }
     
     
-    public void agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, String docrefe, boolean externo){
+    public Tramite agregarInicio(int prioridad, int dni, String nombres, int telefono, String email, String asunto, boolean externo){
+       
         Interesado intere = new Interesado(dni, nombres, telefono, email, externo);
         if(!listaInteresados.existInter(dni)){
             listaInteresados.AgregarInteresado(intere);
         }
-        Expediente expe = new Expediente(contadorId, prioridad, intere, asunto, docrefe);
+        Expediente expe = new Expediente(contadorId, prioridad, intere, asunto);
         
         expe.setDepend(colaDependencia.getInicio());
         
@@ -116,7 +121,7 @@ public class ControladorEDA {
         
         contadorId++;
         contadorTramites++;
-        
+        return tramit;
     }
     
 
@@ -235,6 +240,10 @@ public class ControladorEDA {
 
     public ListaTramitesFinalizados getListaFintramites() {
         return listaFintramites;
+    }
+
+    public ArbolDocumentoReferencia getArbolDocref() {
+        return arbolDocref;
     }
     
     

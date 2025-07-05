@@ -1,6 +1,7 @@
 
 package paquete;
 
+import tda.ArbolBB;
 import tda.DoublyLinkedList;
 
 
@@ -10,7 +11,7 @@ public class Expediente {
     private int prioridad;
     
     private String asunto;
-    private String DocumentoReferencia;
+    private ArbolDocumentoReferencia arbolDocref;
     
     private Interesado interesado;
     
@@ -18,15 +19,16 @@ public class Expediente {
     
     private DoublyLinkedList<Movimiento> movimientos;
 
-    public Expediente(int IdTramite, int prioridad, Interesado intere, String asunto, String DocumentoReferencia) {
+    public Expediente(int IdTramite, int prioridad, Interesado intere, String asunto) {
         this.IdTramite = IdTramite;
         this.prioridad = prioridad;
         this.interesado = intere;
         this.asunto = asunto;
-        this.DocumentoReferencia = DocumentoReferencia;
+        this.arbolDocref = new ArbolDocumentoReferencia();
         this.depend = null;
         this.movimientos = new DoublyLinkedList();
     }
+    
 
     public int getIdTramite() {
         return IdTramite;
@@ -52,13 +54,10 @@ public class Expediente {
         this.asunto = asunto;
     }
 
-    public String getDocumentoReferencia() {
-        return DocumentoReferencia;
+    public ArbolDocumentoReferencia getArbolDocref() {
+        return arbolDocref;
     }
 
-    public void setDocumentoReferencia(String DocumentoReferencia) {
-        this.DocumentoReferencia = DocumentoReferencia;
-    }
 
     public Dependencia getDepend() {
         return depend;
@@ -84,6 +83,9 @@ public class Expediente {
         this.movimientos = movimientos;
     }
     
-    
+    public void agregarDocumentoReferencia(String nombreDoc){
+        DocumentoReferencia doc = new DocumentoReferencia(nombreDoc);
+        arbolDocref.agregarDocumento(doc);
+    }
     
 }
