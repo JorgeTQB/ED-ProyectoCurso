@@ -44,11 +44,14 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         this.control = ControladorEDA.getInstance();
+        
         MostrarTabla();
         setLocationRelativeTo(null);
+        
         Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
         setIconImage(iconoulima);
         SwingUtilities.invokeLater(() -> { //Esto solo se aplica la ventana del menú principal
+        
         Timer timer1 = new Timer(500000, e -> { //Cambiar de acuerdo a lo necesitado
             if (this.isVisible()) {
                 JOptionPane.showMessageDialog(this, "¿Sigues ahí? Recuerda continuar con tus trámites.");
@@ -118,9 +121,7 @@ public class Menu extends javax.swing.JFrame {
         
 
         jTextField2.setText(String.valueOf(control.getContadorId()-1));
-        if(control != null){
-            System.out.println("Se agarra bien el control" + control);
-        }
+        
         if(modeloCombo.getSize()==0){
             modeloCombo.addElement("-Selecciona-");
             modeloCombo.addElement("Inicio");

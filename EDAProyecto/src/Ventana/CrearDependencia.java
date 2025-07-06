@@ -31,9 +31,6 @@ public class CrearDependencia extends javax.swing.JFrame {
         Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
         setIconImage(iconoulima);
         this.control = ControladorEDA.getInstance();
-        if(control != null){
-            System.out.println("El control es " + control);
-        }
         
     }
     

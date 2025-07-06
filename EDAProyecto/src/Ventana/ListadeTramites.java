@@ -56,7 +56,7 @@ public class ListadeTramites extends javax.swing.JFrame {
         this.jTable1.setModel(modelo);
         setLocationRelativeTo(null);
 
-        control = ControladorEDA.getInstance();
+        this.control = ControladorEDA.getInstance();
         Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
         setIconImage(iconoulima);
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
