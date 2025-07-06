@@ -25,7 +25,8 @@ public class Visualizacion extends javax.swing.JDialog {
      */
     public Visualizacion(java.awt.Frame parent, boolean modal, int id) {
         super(parent, "Detalle del trámite", true);
-        control = ControladorEDA.getInstance();
+        this.control = ControladorEDA.getInstance();
+        
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);

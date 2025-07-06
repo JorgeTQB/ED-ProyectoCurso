@@ -42,9 +42,11 @@ public class TramitesFinalizados extends javax.swing.JFrame {
         initComponents();
         MostrarTabla();
         this.control = ControladorEDA.getInstance();
+        
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         this.jTable1.setModel(modelo);
+        
         setLocationRelativeTo(null);
         Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
         setIconImage(iconoulima);

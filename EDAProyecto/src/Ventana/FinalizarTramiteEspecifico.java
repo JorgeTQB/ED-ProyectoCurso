@@ -16,12 +16,6 @@ import java.io.InputStream;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Set;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -58,9 +52,6 @@ public class FinalizarTramiteEspecifico extends javax.swing.JFrame {
         setIconImage(iconoulima);
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         this.control = ControladorEDA.getInstance();
-        if(control !=null){
-            System.out.println("Se ha seteado el control " + control);
-        }
         
          //Tabla
         jTable1.setRowSelectionAllowed(true);
