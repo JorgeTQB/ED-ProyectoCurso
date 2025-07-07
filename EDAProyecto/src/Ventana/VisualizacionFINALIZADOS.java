@@ -43,12 +43,20 @@ public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
         jTextField5.setText(String.valueOf(tramite.getExpediente().getInteresado().getTelefono()));
         jTextField3.setText(tramite.getExpediente().getInteresado().getEmail());
         
+        int dia = tramite.getHoraInicio().get(Calendar.DAY_OF_MONTH);
+        int mes = tramite.getHoraInicio().get(Calendar.MONTH);
+        int year = tramite.getHoraInicio().get(Calendar.YEAR);
         int hora = tramite.getHoraInicio().get(Calendar.HOUR_OF_DAY);
         int minutos2 = tramite.getHoraInicio().get(Calendar.MINUTE);
+        
+        int dia2 = tramite.getHoraFin().get(Calendar.DAY_OF_MONTH);
+        int mes2 = tramite.getHoraFin().get(Calendar.MONTH);
+        int year2 = tramite.getHoraFin().get(Calendar.YEAR);
         int hora2 = tramite.getHoraFin().get(Calendar.HOUR_OF_DAY);
         int minutos3 = tramite.getHoraFin().get(Calendar.MINUTE);
-        jTextField6.setText(String.format("%02d:%02d", hora, minutos2));
-        jTextField7.setText(String.format("%02d:%02d", hora2, minutos3));
+        
+        jTextField6.setText(String.valueOf(dia) + "/" +  String.valueOf(mes) + "/"+ String.valueOf(year) + " " + String.format("%02d:%02d", hora, minutos2));
+        jTextField7.setText(String.valueOf(dia2) + "/" +  String.valueOf(mes2) + "/"+ String.valueOf(year2) + " " + String.format("%02d:%02d", hora2, minutos3));
         jTextArea1.setText(tramite.getExpediente().getAsunto());
     
     }
@@ -186,7 +194,7 @@ public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
         jLabel8.setText("Telefono");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setText("Hora de Inicio");
+        jLabel9.setText("Fecha y Hora de Inicio");
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -197,7 +205,7 @@ public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
         jTextField4.setRequestFocusEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setText("Hora Final");
+        jLabel10.setText("Fecha y Hora Final");
 
         jTextField5.setBackground(new java.awt.Color(204, 204, 204));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

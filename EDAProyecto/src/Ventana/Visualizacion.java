@@ -44,9 +44,12 @@ public class Visualizacion extends javax.swing.JDialog {
         jTextField5.setText(String.valueOf(tramite.getExpediente().getInteresado().getTelefono()));
         jTextField6.setText(tramite.getExpediente().getInteresado().getEmail());
         
+        int dia = tramite.getHoraInicio().get(Calendar.DAY_OF_MONTH);
+        int mes = tramite.getHoraInicio().get(Calendar.MONTH);
+        int year = tramite.getHoraInicio().get(Calendar.YEAR);
         int hora = tramite.getHoraInicio().get(Calendar.HOUR_OF_DAY);
         int minutos2 = tramite.getHoraInicio().get(Calendar.MINUTE);
-        jTextField7.setText(String.format("%02d:%02d", hora, minutos2));
+        jTextField7.setText(String.valueOf(dia) + "/" +  String.valueOf(mes) + "/"+ String.valueOf(year) + " " + String.format("%02d:%02d", hora, minutos2));
         
         jTextArea1.setText(tramite.getExpediente().getAsunto());
     
