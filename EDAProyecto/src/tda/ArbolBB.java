@@ -76,11 +76,27 @@ public class ArbolBB<T extends Comparable> {
         if (!esVacio()){
             if (subArbolIzq!=null)
                 subArbolIzq.inOrden();
+            Object T = raiz;
             System.out.print(raiz+"\t");
             if (subArbolDer!=null)
                 subArbolDer.inOrden();
         }
     }
+    
+    
+    public void inorden(Cola<T> lista) {
+    if (subArbolIzq != null) {
+        subArbolIzq.inorden(lista);
+    }
+    if (raiz != null) {
+        lista.encolar(raiz);
+    }
+    if (subArbolDer != null) {
+        subArbolDer.inorden(lista);
+    }
+}
+    
+    
     /*
     Min: recupera el valor minimo del arboBB
     */

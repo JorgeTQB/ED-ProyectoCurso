@@ -310,7 +310,7 @@ public class TramitesFinalizados extends javax.swing.JFrame {
         System.out.println("ID seleccionado: " + id);
         
         
-        VisualizacionFINALIZADOS v3 = new VisualizacionFINALIZADOS(this,true, id);
+        VisualizacionFINALIZADOS v3 = new VisualizacionFINALIZADOS(null,false, id);
         v3.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
