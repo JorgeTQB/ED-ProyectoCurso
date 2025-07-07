@@ -13,6 +13,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import paquete.ArbolDocumentoReferencia;
+import paquete.Dependencia;
 import paquete.DocumentoReferencia;
 import paquete.Expediente;
 import paquete.Interesado;
@@ -127,11 +128,14 @@ public class ControladorEDA {
     
 
     public void moverExpToDepend(String combo, String combo2){
-        
-        Expediente aux1 = colaDependencia.conseguirDependencia(combo).getColaDependencia().desencolar();
+        Cola<Expediente> cola = colaDependencia.conseguirDependencia(combo).getColaDependencia();
+        Expediente aux1 = cola.desencolar();
         aux1.setDepend(colaDependencia.conseguirDependencia(combo2));
-                
-        aux1.getMovimientos().agregarFinal(new Movimiento(colaDependencia.conseguirDependencia(combo), colaDependencia.conseguirDependencia(combo2)));
+        
+        Dependencia origen = colaDependencia.conseguirDependencia(combo);
+        Dependencia destino = colaDependencia.conseguirDependencia(combo2);
+        Movimiento mov = new Movimiento(origen, destino);
+        aux1.getMovimientos().agregarFinal(mov);
         aux1.getMovimientos().getTail().item().setFecha(Calendar.getInstance());
         colaDependencia.conseguirDependencia(combo2).encolarDependencia(aux1);
         
