@@ -383,7 +383,7 @@ public class ListadeTramites extends javax.swing.JFrame {
         System.out.println("ID seleccionado: " + id);
         
         
-        Visualizacion v3 = new Visualizacion(this,true, id);
+        Visualizacion v3 = new Visualizacion(null,false, id);
         v3.setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
