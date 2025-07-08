@@ -50,6 +50,7 @@ public class Menu extends javax.swing.JFrame {
         
         Image iconoulima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagenes/ulima (1).png"));
         setIconImage(iconoulima);
+        
         SwingUtilities.invokeLater(() -> { //Esto solo se aplica la ventana del menú principal
         
         Timer timer1 = new Timer(500000, e -> { //Cambiar de acuerdo a lo necesitado
@@ -515,37 +516,40 @@ public class Menu extends javax.swing.JFrame {
         Cola<Tramite> aux = control.getListaTramites().getListaTramites().copiar();
         modelo.setRowCount(0);
              
-    while(!aux.esVacia()){
-        
-        String [] Datos = new String[4];
-        Tramite t = aux.desencolar();
-        Calendar x = t.getHoraInicio();
-        LocalTime inicio = x.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-        LocalTime actual = LocalTime.now();
-        
-        long minutos = ChronoUnit.MINUTES.between(inicio,actual);
-        long horas = minutos/60;
-        
-        int hora = t.getHoraInicio().get(Calendar.HOUR_OF_DAY);
-        int minutos2 = t.getHoraInicio().get(Calendar.MINUTE);
-       
+        while(!aux.esVacia()){
 
-        if(minutos >= 1){ //Cambiar dependiendo de la urgencia de tiempo
-                System.out.println("AGREGUÉ: " + t.getExpediente().getIdTramite() + "\t");
-                Datos[0] = String.valueOf(t.getExpediente().getIdTramite());
-                Datos[1] = String.valueOf(t.getExpediente().getPrioridad());
-                Datos[2] = String.format("%02d:%02d", hora, minutos2);
-                Datos[3] = String.valueOf(t.getExpediente().getInteresado().getDNI());
-                modelo.addRow(Datos);
-                contador++;
-        }   
-    }
-    
- 
-    if(contador > 1){
-        control.reproducirSonido2();
-        JOptionPane.showMessageDialog(this, "Tiene trámites pendientes " +contador+" URGENTES!","",JOptionPane.WARNING_MESSAGE);
-    }
+            String [] Datos = new String[4];
+            Tramite t = aux.desencolar();
+            Calendar x = t.getHoraInicio();
+            LocalTime inicio = x.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+            LocalTime actual = LocalTime.now();
+
+            long minutos = ChronoUnit.MINUTES.between(inicio,actual);
+            long horas = minutos/60;
+
+            int dia = t.getHoraInicio().get(Calendar.DAY_OF_MONTH);
+            int mes = t.getHoraInicio().get(Calendar.MONTH);
+            int year = t.getHoraInicio().get(Calendar.YEAR);
+            int hora = t.getHoraInicio().get(Calendar.HOUR_OF_DAY);
+            int minutos2 = t.getHoraInicio().get(Calendar.MINUTE);
+
+
+            if(minutos >= 1){ //Cambiar dependiendo de la urgencia de tiempo
+                    System.out.println("AGREGUÉ: " + t.getExpediente().getIdTramite() + "\t");
+                    Datos[0] = String.valueOf(t.getExpediente().getIdTramite());
+                    Datos[1] = String.valueOf(t.getExpediente().getPrioridad());
+                    Datos[2] = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(year) + " " + String.format("%02d:%02d", hora, minutos2);
+                    Datos[3] = String.valueOf(t.getExpediente().getInteresado().getDNI());
+                    modelo.addRow(Datos);
+                    contador++;
+            }   
+        }
+
+
+        if(contador > 1){
+            control.reproducirSonido2();
+            JOptionPane.showMessageDialog(this, "Tiene trámites pendientes " +contador+" URGENTES!","",JOptionPane.WARNING_MESSAGE);
+        }
     
     }
     
