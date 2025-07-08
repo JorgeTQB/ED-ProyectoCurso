@@ -135,6 +135,11 @@ public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
         jTextField6.setEnabled(false);
         jTextField6.setOpaque(true);
         jTextField6.setRequestFocusEnabled(false);
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jTextField7.setBackground(new java.awt.Color(204, 204, 204));
         jTextField7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -143,6 +148,11 @@ public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
         jTextField7.setEnabled(false);
         jTextField7.setOpaque(true);
         jTextField7.setRequestFocusEnabled(false);
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -322,6 +332,14 @@ public class VisualizacionFINALIZADOS extends javax.swing.JDialog {
         MostrarDOCS v3 = new MostrarDOCS(this,true,arbol);
         v3.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
