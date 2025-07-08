@@ -129,7 +129,7 @@ public class ListadeTramites extends javax.swing.JFrame {
         modelo.setColumnCount(0);
         modelo.addColumn("Origen");
         modelo.addColumn("Destino");
-        modelo.addColumn("Hora");
+        modelo.addColumn("Fecha y Hora");
     }
 
     public void setMenu(Menu v1){
@@ -352,14 +352,19 @@ public class ListadeTramites extends javax.swing.JFrame {
             DoublyLinkedList movimientos = tram.getExpediente().getMovimientos();
             Node<Movimiento> mov = movimientos.getHead();
             
-            int hora = mov.item().getFecha().get(Calendar.HOUR);
-            int minutos2 = mov.item().getFecha().get(Calendar.MINUTE);
+            
 
                        
             while(mov != null){
+                int dia = mov.item().getFecha().get(Calendar.DAY_OF_MONTH);
+                int mes = mov.item().getFecha().get(Calendar.MONTH);
+                int year = mov.item().getFecha().get(Calendar.YEAR);
+                int hora = mov.item().getFecha().get(Calendar.HOUR);
+                int minutos2 = mov.item().getFecha().get(Calendar.MINUTE);
+                
                 Datos[0] = mov.item().getOrigen().getNombre();
                 Datos[1] = mov.item().getDestino().getNombre();
-                Datos[2] = String.format("%02d:%02d", hora, minutos2);
+                Datos[2] = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(year) + " " + String.format("%02d:%02d", hora, minutos2);
                 modelo.addRow(Datos);
 
                 mov = mov.next();
@@ -380,7 +385,7 @@ public class ListadeTramites extends javax.swing.JFrame {
         }
         
         int id = Integer.parseInt(jTable1.getValueAt(fila, 0).toString());
-        System.out.println("ID seleccionado: " + id);
+        
         
         
         Visualizacion v3 = new Visualizacion(null,false, id);

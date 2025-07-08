@@ -134,9 +134,11 @@ public class ControladorEDA {
         
         Dependencia origen = colaDependencia.conseguirDependencia(combo);
         Dependencia destino = colaDependencia.conseguirDependencia(combo2);
+        
         Movimiento mov = new Movimiento(origen, destino);
         aux1.getMovimientos().agregarFinal(mov);
         aux1.getMovimientos().getTail().item().setFecha(Calendar.getInstance());
+        
         colaDependencia.conseguirDependencia(combo2).encolarDependencia(aux1);
         
     }
