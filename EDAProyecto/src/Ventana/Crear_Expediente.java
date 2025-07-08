@@ -179,6 +179,12 @@ public class Crear_Expediente extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Email");
 
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Asunto");
 
@@ -573,9 +579,6 @@ public class Crear_Expediente extends javax.swing.JFrame {
                 return;
             }
         
-        if(textoBusqueda.length()>4){
-            textoBusqueda = textoBusqueda.substring(0, 1);
-        }
         
         String [] Datos = new String[4];
         DoublyLinkedList<Interesado> listaInteresados = control.getListaInteresados().getInteresados();
@@ -631,6 +634,10 @@ public class Crear_Expediente extends javax.swing.JFrame {
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
