@@ -43,6 +43,8 @@ public class ControladorEDA {
     private int contadorTramites;
     
     
+  
+    
     private ControladorEDA() {
         listaTramites = new ListaTramites();
         colaDependencia = new ListaColasDependencias();
@@ -125,6 +127,7 @@ public class ControladorEDA {
         contadorTramites++;
         return tramit;
     }
+    
     
 
     public void moverExpToDepend(String combo, String combo2){
