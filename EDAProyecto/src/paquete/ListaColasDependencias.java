@@ -7,6 +7,12 @@ import tda.*;
 public class ListaColasDependencias{
 
     private Dependencia inicio;
+    private Dependencia comunicaciones;
+    private Dependencia ingenieria;
+    private Dependencia matricula;
+    private Dependencia arquitectura;
+    private Dependencia secretaria;
+    private Dependencia bienestar;
     
     
     //etc...
@@ -22,8 +28,19 @@ public class ListaColasDependencias{
     public ListaColasDependencias(){
         listaColas = new DoublyLinkedList();
         inicio = new Dependencia("Inicio");
-        
+        comunicaciones = new Dependencia("Comunicaciones");
+        ingenieria = new Dependencia("Ingenieria");
+        matricula = new Dependencia("Matricula");
+        arquitectura = new Dependencia("Arquitectura");
+        secretaria = new Dependencia("Secretaria");
+        bienestar = new Dependencia("Bienestar");
         listaColas.agregarFinal(inicio);
+        listaColas.agregarFinal(comunicaciones);
+        listaColas.agregarFinal(ingenieria);
+        listaColas.agregarFinal(matricula);
+        listaColas.agregarFinal(arquitectura);
+        listaColas.agregarFinal(secretaria);
+        listaColas.agregarFinal(bienestar);
 
     }
     

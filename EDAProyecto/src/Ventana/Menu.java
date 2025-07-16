@@ -126,11 +126,30 @@ public class Menu extends javax.swing.JFrame {
         if(modeloCombo.getSize()==0){
             modeloCombo.addElement("-Selecciona-");
             modeloCombo.addElement("Inicio");
+            modeloCombo.addElement("Comunicaciones");
+            modeloCombo.addElement("Ingenieria");
+            modeloCombo.addElement("Matricula");
+            modeloCombo.addElement("Arquitectura");
+            modeloCombo.addElement("Secretaria");
+            modeloCombo.addElement("Bienestar");
         }
         if(modeloCombo2.getSize()==0){
             modeloCombo2.addElement("-Selecciona-");
             modeloCombo2.addElement("Inicio");
+            modeloCombo2.addElement("Comunicaciones");
+            modeloCombo2.addElement("Ingenieria");
+            modeloCombo2.addElement("Matricula");
+            modeloCombo2.addElement("Arquitectura");
+            modeloCombo2.addElement("Secretaria");
+            modeloCombo2.addElement("Bienestar");
         }
+        
+        Tramite tram1=control.agregarInicio(1, 12345678, "Kevin", 123123123, "20230714@aloe.ulima.edu.pe", "Matricula", false);
+        Tramite tram2=control.agregarInicio(2, 45645632, "Jorge", 123123123, "20235047@aloe.ulima.edu.pe", "Cambio de carrera", false);
+        Tramite tram3=control.agregarInicio(3, 98798776, "Eduardo", 123123123, "20232694@aloe.ulima.edu.pe", "Solicitud documentos", false);
+        tram1.getExpediente().agregarDocumentoReferencia("photo.png");
+        tram2.getExpediente().agregarDocumentoReferencia("documento.pdf");
+        tram3.getExpediente().agregarDocumentoReferencia("registro de nacimiento.png");
     }
     
     void MostrarTabla(){
